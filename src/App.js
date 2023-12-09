@@ -5,31 +5,10 @@ import About from './About';
 import Navbar from './Navbar';
 import {Routes,Route} from 'react-router-dom';
 import SignIn from './components/SignIn';
-// import {firebase} from './firebase'
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-
-// res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
-// const express = require('express');
-// const helmet = require('helmet');
-
-// const app = express();
-
-// // Use the helmet middleware to set the Cross-Origin-Opener-Policy header
-// app.use(
-//   helmet({
-//     crossOriginOpenerPolicy: { policy: 'same-origin-allow-popups' } // or 'same-origin-allow-popups' or 'unsafe-none'
-//   })
-// );
-
-// // Your other server configurations and routes...
-
-// const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}`);
-// });
-
-
+import AuthContext from './context/AuthContext'
+import {useState} from 'react'
 
 function App() {
 
@@ -49,9 +28,12 @@ function App() {
   initializeApp(firebaseConfig)
 const auth = getAuth()
 
-
+const[user,setUser]=useState(false)
 
   return (
+
+    <AuthContext.Provider value={[user,setUser]}>
+
     <div className="App">
       <Navbar/>
 
@@ -62,6 +44,7 @@ const auth = getAuth()
       <Route exact path ='/SignIn.jsx' element={<SignIn/>}/>
      </Routes>
     </div>
+    </AuthContext.Provider>
   );
 }
 

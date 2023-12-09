@@ -3,6 +3,8 @@
 }
 
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .nav{
   border-bottom: 2px solid grey;

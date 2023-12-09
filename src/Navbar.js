@@ -1,12 +1,12 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useContext } from 'react'
 import { Link } from "react-router-dom";
 import { getAuth,signOut} from "firebase/auth";
-
 import './App.css'
+import AuthContext from './context/AuthContext';
 
 
 const Navbar = () => {
+  const[user,setUser]=useContext(AuthContext)
 
   const auth = getAuth();
   const signuserOut=()=>{
@@ -17,15 +17,10 @@ const Navbar = () => {
         // An error happened.
         console.log("sign-out unsuccessful")
       });
-      console.log("ho gya signout")
+      console.log("signout")
   }
 
-const[user,setUser]=useState(false)
 
-const logIn=()=>{
-
-    setUser(true)
-}
     const logOut=()=>{
       signuserOut()
     setUser(false)
@@ -33,15 +28,16 @@ const logIn=()=>{
 
 
   return (
-    <div className='nav'>
-    <div className='btn'>
-    <Link to={`/SignIn.jsx`}>Your Name</Link>
-    <button onClick={logIn}>log-in</button>
-        <button onClick={logOut}>log-out</button>
+    <div className='nav filter-blur flex-1 justify-center'>
+    <div className='btn-primary'>
+    
+    <br/>
+
+    {user? <button className='btn-primary' onClick={logOut}>log-out</button>:  <Link to={`/SignIn.jsx`}>signinpage</Link>}
+     
     </div>
       
     </div>
   )
 }
-
 export default Navbar
