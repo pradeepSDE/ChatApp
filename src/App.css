@@ -2,14 +2,24 @@
   text-align: center;
 }
 
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
-.nav{
+ .nav{
   border-bottom: 2px solid grey;
-  /* height: 7vmax; */
-  justify-content: space-between;
-  align-items: center;
+   height: 3vmax; 
+  display:flex;
+  justify-items:space-evenly
+  /* align-items: center; */
 
+ } 
+ .button{
+  align-items: right;
+  padding-left: 2em
 }
+.btn{
+  /* border:1px solid blue; */
+  /* border-radius:11% */
+
+} 

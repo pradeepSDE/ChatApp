@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link } from "react-router-dom";
+import { Link,useNavigate} from "react-router-dom";
 import { getAuth,signOut} from "firebase/auth";
 import './App.css'
 import AuthContext from './context/AuthContext';
@@ -7,6 +7,7 @@ import AuthContext from './context/AuthContext';
 
 const Navbar = () => {
   const[user,setUser]=useContext(AuthContext)
+  const navigate =useNavigate();
 
   const auth = getAuth();
   const signuserOut=()=>{
@@ -26,15 +27,31 @@ const Navbar = () => {
     setUser(false)
     }
 
+    const handleLogout = async () => {
+      try {
+        await signOut(auth);
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        navigate("/SignIn");
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  
+
 
   return (
-    <div className='nav filter-blur flex-1 justify-center'>
-    <div className='btn-primary'>
-    
-    <br/>
 
-    {user? <button className='btn-primary' onClick={logOut}>log-out</button>:  <Link to={`/SignIn.jsx`}>signinpage</Link>}
-     
+    
+    <div className='nav'>
+    <div>
+    <h1>Logo</h1>
+    </div>
+    <div className='button'>
+    
+    {user? <button className='btn' onClick={logOut}>log-out</button>:  <Link to="/SignIn">signinpage</Link>}
+     <button><Link to={`/`} >Home</Link> </button>
+     <button onClick={handleLogout}>LogOut</button>
     </div>
       
     </div>

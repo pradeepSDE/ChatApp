@@ -3,12 +3,16 @@ import './App.css';
 import Home from './Home';
 import About from './About';
 import Navbar from './Navbar';
-import {Routes,Route} from 'react-router-dom';
+import {Routes,Route,} from 'react-router-dom';
 import SignIn from './components/SignIn';
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import AuthContext from './context/AuthContext'
 import {useState} from 'react'
+// import Profile from './components/Profile';
+import UserProfile from './components/UserProfile';
+import PrivateRoute from './components/PrivateRoute';
+import SignUp from './components/SignUp';
 
 function App() {
 
@@ -37,13 +41,22 @@ const[user,setUser]=useState(false)
     <div className="App">
       <Navbar/>
 
-     chat_app
+     
      <Routes>
       <Route exact path='/' element={<Home/>}/>
       <Route exact path='/about' element={<About/>}/>
-      <Route exact path ='/SignIn.jsx' element={<SignIn/>}/>
-     </Routes>
+      <Route exact path ='/SignIn' element={<SignIn/>}/>
+      <Route exact path='/private' element={<PrivateRoute/>}>
+      <Route exact path='UserProfile' element={<UserProfile/>}/>
+      </Route>
+      <Route exact path='/signUp' element={<SignUp/>}/>
+
+
+   </Routes>
     </div>
+       
+       
+       
     </AuthContext.Provider>
   );
 }
