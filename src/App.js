@@ -40,14 +40,20 @@ const[user,setUser]=useState(false)
 
     <div className="App">
       <Navbar/>
-
      
      <Routes>
       <Route exact path='/' element={<Home/>}/>
       <Route exact path='/about' element={<About/>}/>
       <Route exact path ='/SignIn' element={<SignIn/>}/>
-      <Route exact path='/private' element={<PrivateRoute/>}>
+
+
+      {/* <Route exact path='/private' element={<PrivateRoute/>}>
       <Route exact path='UserProfile' element={<UserProfile/>}/>
+      </Route> */}
+
+
+      <Route path='/private' element={<PrivateRoute/>}>
+      <Route path='/private' element={<UserProfile/>}/>
       </Route>
       <Route exact path='/signUp' element={<SignUp/>}/>
 

@@ -10,9 +10,9 @@
   border-bottom: 2px solid grey;
    height: 3vmax; 
   display:flex;
-  justify-items:space-evenly
+  justify-items:space-evenly;
   /* align-items: center; */
-
+  
  } 
  .button{
   align-items: right;
