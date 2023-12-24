@@ -17,4 +17,30 @@ code {
     monospace;
 } */
 
+.userChat{
+  background-color: blueviolet;
+border: 2px blue;
+padding-top: 2px;
+padding-bottom: 2px;
+padding-left: 2px;
+padding-right: 2px;
+display: flex;
+
+align-items: center;
+cursor: pointer;
+:hover {
+  background-color: aquamarine;
+  
+}
+}
+.avatar{
+  border-radius: 50%;
+  border: 2px black;
+  height: 10vh;
+  justify-content: left;
+
+}
+.userChatInfo{
+  padding: 0px 2px 2px 5vw  ;
+}
 

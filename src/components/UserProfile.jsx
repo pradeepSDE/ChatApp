@@ -1,4 +1,6 @@
 import React from 'react'
+import SendMessage from './SendMessage';
+import MessangerConsole from './MessangerConsole';
 
 function UserProfile() {
 
@@ -6,8 +8,9 @@ function UserProfile() {
   return (
     <div>
       <h1>Hello!! {user && user.email}</h1>
-      from userprofile
-      this user is authenticated and messages will appear here
+      
+      {/* <SendMessage/> */}
+      <MessangerConsole/>
     </div>
   )
 }

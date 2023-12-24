@@ -13,24 +13,29 @@ import {useState} from 'react'
 import UserProfile from './components/UserProfile';
 import PrivateRoute from './components/PrivateRoute';
 import SignUp from './components/SignUp';
+import { getFirestore } from "firebase/firestore";
+import {getStorage} from "firebase/storage";
 
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBejY-aL680nkVGQf55mtoLTzNg-sSRRj4",
+    authDomain: "chatapp-22c4e.firebaseapp.com",
+    databaseURL: "https://chatapp-22c4e-default-rtdb.firebaseio.com",
+    projectId: "chatapp-22c4e",
+    storageBucket: "chatapp-22c4e.appspot.com",
+    messagingSenderId: "268422137513",
+    appId: "1:268422137513:web:a32906c3071c6a4c888bb8",
+    measurementId: "G-GYPW8FZ2MD",
+  
+    // Enforce Cross-Origin Opener Policy,
+    
+  };
+ const app=  initializeApp(firebaseConfig)
+  const auth = getAuth()
+  const db = getFirestore(app);
+  const storage = getStorage();
 function App() {
 
-  const firebaseConfig = {
-      apiKey: "AIzaSyBejY-aL680nkVGQf55mtoLTzNg-sSRRj4",
-      authDomain: "chatapp-22c4e.firebaseapp.com",
-      databaseURL: "https://chatapp-22c4e-default-rtdb.firebaseio.com",
-      projectId: "chatapp-22c4e",
-      storageBucket: "chatapp-22c4e.appspot.com",
-      messagingSenderId: "268422137513",
-      appId: "1:268422137513:web:a32906c3071c6a4c888bb8",
-      measurementId: "G-GYPW8FZ2MD",
-    
-      // Enforce Cross-Origin Opener Policy,
-      
-    };
-  initializeApp(firebaseConfig)
-const auth = getAuth()
 
 const[user,setUser]=useState(false)
 
@@ -66,5 +71,6 @@ const[user,setUser]=useState(false)
     </AuthContext.Provider>
   );
 }
-
+export {db,auth,storage} ;
 export default App;
+

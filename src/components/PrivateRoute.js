@@ -8,7 +8,7 @@ function PrivateRoute() {
 
     const token = localStorage.getItem('token');
     const tokenType  = typeof(token)
-    console.log(tokenType)
+    // console.log(tokenType)
 
     return (
 

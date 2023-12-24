@@ -1,22 +1,45 @@
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
+import { doc, setDoc } from 'firebase/firestore'
 import React from 'react'
 import {useState} from 'react'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
+import {db,storage} from '../App'
 
 
 function SignUp() {
     const auth=getAuth()
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
+    const [userName,setuserName]=useState('')
     const navigate=useNavigate()
 
 
     const handleSignup= async(e)=>{
       e.preventDefault()
-        const userCredential= createUserWithEmailAndPassword(auth,email,password)
+        const userCredential= await createUserWithEmailAndPassword(auth,email,password)
         console.log(userCredential)
         const user=userCredential.user
+
+        try {
+
+          await setDoc(doc(db,"users",userCredential.user.uid),{
+                userName,
+                email,
+                password,
+               uid: userCredential.user.uid,
+              });
+
+
+          await setDoc(doc(db, "userChats", userCredential.user.uid), {});
+          navigate("/");
+          
+        } catch (error) {
+          console.log(error)
+        }
+      
+
+
     //    localStorage.setItem('token',user.accessToken)
     //    localStorage.setItem('user',JSON.stringify(user))
        navigate('/SignIn')
@@ -33,10 +56,16 @@ function SignUp() {
         <h3 className="mb-3 text-4xl font-extrabold text-dark-grey-900">Sign Up</h3>
         <p className="mb-4 text-grey-700">Enter your email and password</p>
         
+        <label for="email" className="mb-2 text-sm text-start text-grey-900">UserName</label>
+        <input id="email" type="username" placeholder="mail@loopple.com" className="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"
+        value={userName}
+        onChange={(e)=>setuserName(e.target.value)}/>
+
         <label for="email" className="mb-2 text-sm text-start text-grey-900">Email*</label>
         <input id="email" type="email" placeholder="mail@loopple.com" className="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"
         value={email}
         onChange={(e)=>setEmail(e.target.value)}/>
+
 
         <label for="password" className="mb-2 text-sm text-start text-grey-900">Password*</label>
         <input id="password" type="password" placeholder="Enter a password" className="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"
