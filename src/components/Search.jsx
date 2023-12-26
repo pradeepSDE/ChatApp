@@ -1,5 +1,5 @@
 import React, { useState ,useEffect} from 'react'
-import { collection, query, where ,doc, getDocs, setDoc} from "firebase/firestore";
+import { collection, query, where ,doc, getDocs,getDoc, setDoc} from "firebase/firestore";
 import '../index.css'
 import {db} from '../App'
 const Search = () => {
@@ -49,17 +49,29 @@ const handleSelect= async()=>{
 console.log('handleSelect call')
 const combID = authUser.uid>user.uid ?  authUser.uid + user.uid : user.uid + authUser.uid;
 console.log(combID)
+const docRef = doc(db, "chats", combID);
+
+
+// const  res = await getDoc(docRef);
+// console.log(res.exists());
+
+
+//   if(!res.exists()){
+//     await setDoc(docRef,{messages:[]})
+//   }
 
 try {
-  const  res = await getDocs(db,"chats",combID);
-console.log(res.exists());
+  const  res = await getDoc(docRef);
+  console.log(res.exists());
   if(!res.exists()){
-    await setDoc(doc(db,"chats",combID),{messages:[]})
+    await setDoc((docRef),{messages:[]})
   }
   
 } catch (error) {
   setErr(true)
 }
+
+
 }
 
 
