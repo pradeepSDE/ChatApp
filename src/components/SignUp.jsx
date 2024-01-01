@@ -10,10 +10,6 @@ import 'firebase/auth';
 
 
 function SignUp() {
-  
-
-
-
     const auth=getAuth()
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
@@ -26,33 +22,30 @@ function SignUp() {
       
       
       const userCredential= await createUserWithEmailAndPassword(auth,email,password)
-      console.log(userCredential)
-      const user=userCredential.user
-      try {
+      .then(async (res) => {
+       console.log(res)
+        const user = res.user;
 
-        // await updateProfile(userCredential, {
-        //   displayName: displayName,
-        // });
+        await updateProfile(user, {
+          displayName: displayName,
+        });
 
-          
-          await setDoc(doc(db,"users",userCredential.user.uid),{
-                displayName,
-                email,
-                password,
-               uid: userCredential.user.uid,
-              });
+         
+        await setDoc(doc(db,"users",user.uid),{
+          displayName,
+          email,
+          password,
+           uid:user.uid,
+        });
 
 
-          await setDoc(doc(db, "userChats", userCredential.user.uid), {});
-          navigate("/");
-
-          await user.reload();
-          
-        } catch (error) {
-          console.log(error)
-        }
-      
-
+    await setDoc(doc(db, "userChats", user.uid), {});
+   
+      })
+      .catch((err) => {
+       console.log(err)
+      });
+  
        navigate('/SignIn')
     }
   return (
