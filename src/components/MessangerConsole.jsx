@@ -1,6 +1,7 @@
 import React from 'react'
 import '../msgcon.css'
 import Search from './Search'
+import Chats from './Chats'
 const MessangerConsole = () => {
 
 
@@ -10,6 +11,7 @@ const MessangerConsole = () => {
 
         <div className="profiles">
 <Search/>
+{/* <Chats/> */}
 
         </div>
         <div className="chat">

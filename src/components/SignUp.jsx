@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
+import { createUserWithEmailAndPassword, getAuth,updateProfile } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 import React from 'react'
 import {useState} from 'react'
@@ -6,25 +6,37 @@ import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 import {db,storage} from '../App'
 
+import 'firebase/auth';
+
 
 function SignUp() {
+  
+
+
+
     const auth=getAuth()
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
-    const [userName,setuserName]=useState('')
+    const [displayName,setdisplayName]=useState('')
     const navigate=useNavigate()
 
 
     const handleSignup= async(e)=>{
       e.preventDefault()
-        const userCredential= await createUserWithEmailAndPassword(auth,email,password)
-        console.log(userCredential)
-        const user=userCredential.user
+      
+      
+      const userCredential= await createUserWithEmailAndPassword(auth,email,password)
+      console.log(userCredential)
+      const user=userCredential.user
+      try {
 
-        try {
+        // await updateProfile(userCredential, {
+        //   displayName: displayName,
+        // });
 
+          
           await setDoc(doc(db,"users",userCredential.user.uid),{
-                userName,
+                displayName,
                 email,
                 password,
                uid: userCredential.user.uid,
@@ -33,15 +45,14 @@ function SignUp() {
 
           await setDoc(doc(db, "userChats", userCredential.user.uid), {});
           navigate("/");
+
+          await user.reload();
           
         } catch (error) {
           console.log(error)
         }
       
 
-
-    //    localStorage.setItem('token',user.accessToken)
-    //    localStorage.setItem('user',JSON.stringify(user))
        navigate('/SignIn')
     }
   return (
@@ -56,10 +67,10 @@ function SignUp() {
         <h3 className="mb-3 text-4xl font-extrabold text-dark-grey-900">Sign Up</h3>
         <p className="mb-4 text-grey-700">Enter your email and password</p>
         
-        <label for="email" className="mb-2 text-sm text-start text-grey-900">UserName</label>
-        <input id="email" type="username" placeholder="mail@loopple.com" className="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"
-        value={userName}
-        onChange={(e)=>setuserName(e.target.value)}/>
+        <label for="email" className="mb-2 text-sm text-start text-grey-900">displayName</label>
+        <input id="email" type="displayName" placeholder="mail@loopple.com" className="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"
+        value={displayName}
+        onChange={(e)=>setdisplayName(e.target.value)}/>
 
         <label for="email" className="mb-2 text-sm text-start text-grey-900">Email*</label>
         <input id="email" type="email" placeholder="mail@loopple.com" className="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"
@@ -86,30 +97,6 @@ function SignUp() {
 </>
 
 
-
-
-
-
-    // <div>
-    //   <h1>Signup Here</h1>
-    //   <form onSubmit={handleSignup} >
-    //   <input  
-    //   type="text" 
-    //   placeholder='email ID'
-    //   value={email}
-    //   onChange={(e)=>setEmail(e.target.value)}/>
-    //   <br/>
-
-    //   <input 
-    //   type="password"
-    //    placeholder='password...'
-    //    value={password}
-    //   onChange={(e)=>setPassword(e.target.value)}
-    //    />
-    //   <br/>
-    //   <button >Submit</button>
-    // </form>
-    // </div>
   )
 }
 

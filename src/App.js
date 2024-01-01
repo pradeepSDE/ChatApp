@@ -30,10 +30,10 @@ const firebaseConfig = {
     // Enforce Cross-Origin Opener Policy,
     
   };
- const app=  initializeApp(firebaseConfig)
-  const auth = getAuth()
+ const app= initializeApp(firebaseConfig)
+  const auth = getAuth(app)
   const db = getFirestore(app);
-  const storage = getStorage();
+  const storage = getStorage(app);
 function App() {
 
 
