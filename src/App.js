@@ -37,11 +37,11 @@ const firebaseConfig = {
 function App() {
 
 
-const[user,setUser]=useState(false)
+
 
   return (
 
-    <AuthContext.Provider value={[user,setUser]}>
+    
 
     <div className="App">
       <Navbar/>
@@ -65,10 +65,10 @@ const[user,setUser]=useState(false)
 
    </Routes>
     </div>
+  
        
        
        
-    </AuthContext.Provider>
   );
 }
 export {db,auth,storage} ;

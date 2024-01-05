@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   collection,
   query,
@@ -15,6 +15,7 @@ import "../index.css";
 import { db,auth } from "../App";
 import { getAuth, getIdToken,onAuthStateChanged,updateProfile } from "firebase/auth";
 import firebase from 'firebase/compat/app'
+import AuthContext from "../context/AuthContext";
 
 
 
@@ -26,7 +27,7 @@ const Search = () => {
   const [err, setErr] = useState(false);
   const [user, setUser] = useState(null);
   const authUser = JSON.parse(localStorage.getItem("user"));
-
+  const {currentUser}= useContext(AuthContext)
 
   const handleSearch = async () => {
     const q = query(
@@ -35,6 +36,7 @@ const Search = () => {
     );
 
     console.log("handleSeartch chal;a");
+    console.log(currentUser)
     
     try {
       const querySnapshot = await getDocs(q);

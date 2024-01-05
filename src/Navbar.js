@@ -6,7 +6,7 @@ import AuthContext from './context/AuthContext';
 
 
 const Navbar = () => {
-  const[user,setUser]=useContext(AuthContext)
+//   const[user,setUser]=useContext(AuthContext)
   const navigate =useNavigate();
 
   const auth = getAuth();
@@ -24,7 +24,7 @@ const Navbar = () => {
 
     const logOut=()=>{
       signuserOut()
-    setUser(false)
+    // setUser(false)
     }
 
     const handleLogout = async () => {
