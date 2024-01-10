@@ -60,7 +60,7 @@ const Search = () => {
    
  
     console.log("handleSelect call");
-    console.log(user.displayName)
+    console.log(user.uid)
     console.log(authUser.displayName)
     console.log(authUser.uid)
   
@@ -82,16 +82,16 @@ const Search = () => {
 
         await updateDoc(doc(db, "userChats", authUser.uid), {
           [combID + ".userInfo"]: {
-            uid: authUser.uid,
-            // displayName:authUser.displayName,
+            uid: user.uid,
+            displayName:user.displayName,
           },
           [combID + ".date"]: serverTimestamp(),
         });
 
         await updateDoc(doc(db, "userChats", user.uid), {
           [combID + ".userInfo"]: {
-            uid: user.uid,
-            displayName: user.displayName,
+            uid: authUser.uid,
+            displayName: authUser.displayName,
           },
           [combID + ".date"]: serverTimestamp(),
         });
