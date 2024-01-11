@@ -7,7 +7,7 @@ const Chat = () => {
   const {data}=useContext(ChatContext)
   console.log(data)
   return (
-    <div className='msgNavbar'>
+    <div className='msgNavbar sticky top-0 z-9999 overflow-hidden'>
       {/* <!-- This is an example component --> */}
 <div class="max-w-2xl mx-auto">
     

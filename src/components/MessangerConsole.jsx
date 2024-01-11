@@ -17,7 +17,7 @@ const MessangerConsole = () => {
 <Chats/>
 
         </div>
-        <div className="chat">
+        <div className="chat overflow-y-auto">
 
                 <Chat/>
 

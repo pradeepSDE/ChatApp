@@ -120,7 +120,7 @@ const Search = () => {
         </div>
 
         {user ? (
-          <div className="userChat" onClick={handleSelect}>
+          <div className="userChat p-2.5 border-b-black " onClick={handleSelect}>
             <img
               className="avatar"
               src="https://th.bing.com/th/id/OIP.Gfp0lwE6h7139625a-r3aAHaHa?rs=1&pid=ImgDetMain"
