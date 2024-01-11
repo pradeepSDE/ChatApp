@@ -4,6 +4,7 @@ import Search from './Search'
 import Chats from './Chats'
 import Chat from './Chat'
 import Messages from '../Messages'
+import Inputmsg from './Inputmsg'
 const MessangerConsole = () => {
 
 
@@ -21,6 +22,7 @@ const MessangerConsole = () => {
                 <Chat/>
 
                 <Messages/>
+                <Inputmsg/>
 
         </div>
         </div> 

@@ -15,7 +15,7 @@ useEffect(()=>{
 
     try {
         
-        const unsub = onSnapshot(doc(db,"chats",data.chatId),(doc)=>{
+         const  unsub = onSnapshot(doc(db,"chats",data.chatId),(doc)=>{
             doc.exists() && setMessages(doc.data().messages)
 
     
@@ -27,13 +27,15 @@ useEffect(()=>{
         setErr(err)
     }
 
-},[data.chatId])
+},[data.chatId,err])
 
-
+// await messages
 console.log(messages)
 console.log(err)
   return (
     <>
+
+    
      {messages.map((m)=>
         <Message messages={m}  key={m.id}/>
      )} 
