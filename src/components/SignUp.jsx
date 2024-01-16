@@ -44,6 +44,7 @@ function SignUp() {
       })
       .catch((err) => {
        console.log(err)
+       alert("Email already exists")
       });
   
        navigate('/SignIn')
@@ -60,7 +61,7 @@ function SignUp() {
         <h3 className="mb-3 text-4xl font-extrabold text-dark-grey-900">Sign Up</h3>
         <p className="mb-4 text-grey-700">Enter your email and password</p>
         
-        <label for="email" className="mb-2 text-sm text-start text-grey-900">displayName</label>
+        <label for="email" className="mb-2 text-sm text-start text-grey-900">DisplayName</label>
         <input id="email" type="displayName" placeholder="mail@loopple.com" className="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"
         value={displayName}
         onChange={(e)=>setdisplayName(e.target.value)}/>
@@ -72,6 +73,7 @@ function SignUp() {
 
 
         <label for="password" className="mb-2 text-sm text-start text-grey-900">Password*</label>
+        <label for="password" className="mb-2 text-xs text-start text-slate-400 font-thin  ">*should be atleast 6 characters</label>
         <input id="password" type="password" placeholder="Enter a password" className="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"
         value={password}
         onChange={(e)=>setPassword(e.target.value)}/>

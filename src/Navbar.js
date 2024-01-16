@@ -191,7 +191,7 @@ return (
 				</div>
 				<p className="my-4 text-xs text-center text-gray-400">
 					<span>Copyright © 2021</span>
-					<span> developed by @Pradeep_bisen</span>
+					<span> ndeveloped by @Pradeep_bisen</span>
 				</p>
 			</div>
 		</nav>

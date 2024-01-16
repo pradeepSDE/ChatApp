@@ -34,7 +34,9 @@ const SignIn = () => {
        navigate('/private')
         
       } catch (error) {
+        
         console.error(error)
+        alert("wrong username or password entered")
       }
     }
     const [email,setEmail]=useState('')
