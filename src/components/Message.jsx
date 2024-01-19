@@ -9,6 +9,7 @@ import { v4 as uuid } from 'uuid'
 const Message = ({messages}) => {
     console.log(messages)
     const {currentUser}=useContext(AuthContext)
+    console.log(currentUser)
     const {data}=useContext(ChatContext)
 
 console.log(messages.senderId)

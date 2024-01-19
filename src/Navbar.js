@@ -7,6 +7,8 @@ import AuthContext from './context/AuthContext';
 
 const Navbar = () => {
 //   const[user,setUser]=useContext(AuthContext)
+const {currentUser}= useContext(AuthContext)
+console.log(currentUser)
 const[toggle,setToggle]=useState(false)
   const navigate =useNavigate();
 
@@ -167,7 +169,7 @@ return (
 			<div>
 				<ul>
 					<li className="mb-1">
-						<a className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="#">Home</a>
+						<span className="block p-4 text-xl font-bold text-gray-900 hover:bg-blue-50 hover:text-blue-600 rounded">{currentUser.displayName}</span>
 					</li>
 					<li className="mb-1">
 						<a className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="#">About Us</a>
@@ -191,7 +193,7 @@ return (
 				</div>
 				<p className="my-4 text-xs text-center text-gray-400">
 					<span>Copyright © 2021</span>
-					<span> ndeveloped by @Pradeep_bisen</span>
+					<span> developed by @Pradeep_bisen</span>
 				</p>
 			</div>
 		</nav>
