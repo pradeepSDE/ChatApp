@@ -1,6 +1,5 @@
 
 import './App.css';
-import Home from './Home';
 import About from './About';
 import Navbar from './Navbar';
 import {Routes,Route,} from 'react-router-dom';
@@ -47,7 +46,7 @@ function App() {
       <Navbar/>
      
      <Routes>
-      <Route exact path='/' element={<Home/>}/>
+      <Route exact path='/' element={<SignIn/>}/>
       <Route exact path='/about' element={<About/>}/>
       <Route exact path ='/SignIn' element={<SignIn/>}/>
 
