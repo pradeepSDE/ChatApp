@@ -47,7 +47,7 @@ const SignIn = () => {
   return (
     <>
  <body className="bg-white rounded-lg ">    
-        <div className="container flex flex-col mx-auto bg-white rounded-lg pt-12 ">
+        <div className="container flex flex-col mx-auto bg-white rounded-lg pt-8 ">
            <div className="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
       <div className="flex items-center justify-center w-full lg:p-12">
         <div className="flex items-center xl:p-10">
@@ -67,10 +67,10 @@ const SignIn = () => {
             onChange={(e)=>setPassword(e.target.value)}/>
             
             <button className="w-full  bg-blue-500 hover:bg-sky-700 px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Sign In</button>
-            <p className="text-sm leading-relaxed text-grey-900">Not registered yet?
-            <Link to={'/signUp'} className="font-bold text-grey-700" > SignUp  </Link>
+            <p className="text-sm leading-relaxed text-grey-900">Not registered yet?<span> </span>
+            <Link to={'/signUp'} className="font-bold  underline text-grey-700" >SignUp</Link><span> </span>
              
-              Create an Account</p>
+              and Create an Account</p>
           </form>
         </div>
               </div>

@@ -36,10 +36,9 @@ console.log(err)
 // setMessages('')
   return (
     <>
-
-    
      {messages.map((m)=>
         <Message messages={m}  key={m.id}/>
+        
      )} 
     </>
   )
