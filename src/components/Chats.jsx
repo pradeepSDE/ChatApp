@@ -6,6 +6,7 @@ import AuthContext from "../context/AuthContext";
 import ChatContext from "../context/ChatContext";
 import '../msgcon.css'
 
+
 const Chats = () => {
   const [chats, setChats] = useState([]);
   const {currentUser}=useContext(AuthContext)
@@ -53,14 +54,26 @@ try {
 
   return (
     // <>p</>
-    <div className="chats">
+    <div className=" ">
       {Object.entries(chats)?.sort((a,b)=>b[1].date - a[1].date).map((chat) => (
-        <div className="userChat" key={chat[0]} onClick={()=>handleSelect(chat[1].userInfo)} >
+        <div className=" bg-cyan-200 hover:bg-cyan-300 p-1.5 mt-2" key={chat[0]} onClick={()=>handleSelect(chat[1].userInfo)} >
           {/* <img src={chat[1].userInfo.photoURL} alt="" /> */}
-          <div className="userChatInfo">
-            <span>{chat[1].userInfo.displayName}</span>
-            <p>{chat[1].lastMessage?.text}</p>
+          <div className="flex">
+
+          <div>
+          <img
+              className="avatar "
+              src="https://th.bing.com/th/id/OIP.Gfp0lwE6h7139625a-r3aAHaHa?rs=1&pid=ImgDetMain"
+              alt="img"
+              />
           </div>
+          <div className="flex flex-col ml-9">
+
+            <span className="text-2xl mt-2 font-sans font-semibold">{chat[1].userInfo.displayName}</span>
+            <p className="font-light mt-1.5">{chat[1].lastMessage?.text}</p>
+            
+          </div>
+      </div>
         </div>
       ))}
     </div>

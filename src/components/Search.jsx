@@ -108,9 +108,10 @@ const Search = () => {
     <>
       {err && <span>error ho giyo</span>}
 
-      <div className="search">
-        <div className="searchForm">
+      <div className="">
+        <div className="w-full p-2 mt-1 font-sans ">
           <input
+          className="border-solid border-red-500 p-2 w-full text-xl font-sans"
             type="text"
             placeholder="Find a user"
             onKeyDown={handleKey}
@@ -120,14 +121,14 @@ const Search = () => {
         </div>
 
         {user ? (
-          <div className="userChat p-2.5 border-b-black " onClick={handleSelect}>
+          <div className=" flex flex-start items-center border-black bg-cyan-200 hover:bg-cyan-300 p-2.5 border-b-black " onClick={handleSelect}>
             <img
-              className="avatar"
+              className="avatar "
               src="https://th.bing.com/th/id/OIP.Gfp0lwE6h7139625a-r3aAHaHa?rs=1&pid=ImgDetMain"
               alt="img"
             />
-            <div className="userChatInfo">
-              <span>{user.displayName}</span>
+            <div className="userChatInfo border-black">
+              <span className="font-semibold text-3xl ">{user.displayName}</span>
             </div>
           </div>
         ) : (
