@@ -3,15 +3,20 @@ import GoogleButton from 'react-google-button'
 import { GoogleAuthProvider,signInWithEmailAndPassword,getAuth,signInWithPopup, signInWithRedirect, signOut} from "firebase/auth";
 import AuthContext from '../context/AuthContext';
 import { Link, useNavigate } from "react-router-dom";
+import  { ClipLoader } from 'react-spinners';
+import { Bars } from 'react-loader-spinner';
 
 
 const SignIn = () => {
+  const [loading, setLoading] = useState(false);
   const provider = new GoogleAuthProvider();
+  const[error,setError]=useState(false);
   const auth = getAuth();
   const navigate=useNavigate();
   
   
   const handleGoogleSignin=()=>{
+    setLoading(true);
     signInWithRedirect(auth,provider);
     // signInWithPopup(auth,provider);
     console.log('uhuh')
@@ -23,6 +28,8 @@ const SignIn = () => {
   const handleFormSubmit= async(e)=>{
     e.preventDefault();
     try {
+      setLoading(true);
+      console.log(loading)
       const userCredential = await  signInWithEmailAndPassword(auth, email, password)
       console.log(userCredential)
       const Authuser=userCredential.user
@@ -31,19 +38,42 @@ const SignIn = () => {
        console.log(Authuser)
        
        console.log(currentUser)
+       setLoading(false)
        navigate('/private')
         
       } catch (error) {
-        
+        setLoading(false)
+        setError(true)
         console.error(error)
-        alert("wrong username or password entered")
+        
       }
     }
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
 
-      
+  if(loading  ){
+      return <div>
 
+        <div className='flex items-center justify-center'>
+
+        <h1 className='font-mono text-3xl mt-1.5 font-bold '>Logging you in...</h1>
+        </div>
+      <div className='h-screen flex items-center justify-center'>
+        <Bars 
+      height="150"
+      width="150"
+      color="#00BFFF"
+      ariaLabel="bars-loading"
+      wrapperStyle={{}}
+      wrapperClass=""
+      visible={true}
+      /></div>
+      </div> 
+    }
+    else{
+
+      
+      
   return (
     <>
  <body className="bg-white rounded-lg ">    
@@ -55,7 +85,12 @@ const SignIn = () => {
           className="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl">
             <h3 className="mb-3 text-4xl font-extrabold text-dark-grey-900">Sign In</h3>
             <p className="mb-4 text-grey-700">Enter your email and password</p>
+
+           {error &&  <div className='bg-red-200 p-2 rounded-2xl  '>
+             <p className=' text-sm font-semibold px-6 py-2 text-grey-700'>Incorrect username or password </p>
             
+            </div>
+            }
             <label for="email" className="mb-2 text-sm text-start text-grey-900">Email*</label>
             <input id="email" type="email" placeholder="mail@loopple.com" className="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"
             value={email}
@@ -84,6 +119,7 @@ const SignIn = () => {
   )
 }
 
+}
 
 
 export default SignIn

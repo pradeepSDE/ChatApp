@@ -105,7 +105,7 @@ console.log(toggle)
 return ( 
   <>
 
-<body className="bg-blue-500">
+<body className="bg-blue-500 ">
 	<nav className="relative px-4 py-4 flex justify-between items-center bg-white">
 		<a className="text-3xl font-bold leading-none" href="#">
 			<svg className="h-10" alt="logo" viewBox="0 0 10240 10240">
@@ -151,9 +151,9 @@ return (
 
 
 
-	<div className={`navbar-menu relative z-50 ${toggle? '':'hidden'}`}>
-		<div className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
-		<nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
+	<div className={`navbar-menu  relative z-50 ${toggle? '':'hidden'}`}>
+		<div className="navbar-backdrop  fixed inset-0 bg-gray-800 opacity-25"></div>
+		<nav className="fixed top-0  left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
 			<div className="flex items-center mb-8">
 				<a className="mr-auto text-3xl font-bold leading-none" href="#">
 					<svg className="h-12" alt="logo" viewBox="0 0 10240 10240">
