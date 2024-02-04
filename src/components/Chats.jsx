@@ -10,7 +10,7 @@ const Chats = () => {
   const [chats, setChats] = useState([]);
   const {currentUser}=useContext(AuthContext)
   const {dispatch}=useContext(ChatContext)
-  console.log(currentUser)
+  // console.log(currentUser)
   //   const { dispatch } = useContext(ChatContext);
   
 //   try {
@@ -38,7 +38,7 @@ try {
     
         uid && getChats();
       }, [uid]);
-      console.log(Object.entries(chats))
+      // console.log(Object.entries(chats))
 
 //   } catch (error) {
 //     console.log(error)

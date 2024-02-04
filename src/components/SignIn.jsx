@@ -52,7 +52,7 @@ const SignIn = () => {
     const [password,setPassword]=useState('')
 
   if(loading  ){
-      return <div>
+      return <div className=''>
 
         <div className='flex items-center justify-center'>
 

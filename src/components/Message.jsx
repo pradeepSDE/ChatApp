@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState,useEffect } from 'react'
 import { useContext } from 'react'
 import AuthContext from '../context/AuthContext'
 import ChatContext from '../context/ChatContext'
@@ -7,15 +7,25 @@ import { db } from '../App'
 import { v4 as uuid } from 'uuid'
 
 const Message = ({messages}) => {
-    console.log(messages)
+    // console.log(messages)
     const {currentUser}=useContext(AuthContext)
-    console.log(currentUser)
+    // console.log(currentUser)
     const {data}=useContext(ChatContext)
 
-console.log(messages.senderId)
-console.log(currentUser.uid)
+// console.log(messages.senderId)
+// console.log(currentUser.uid)
    
-    
+
+const ref = useRef();
+
+useEffect(() => {
+  ref.current?.scrollIntoView({ behavior: "smooth" });
+  console.log("mai e se")
+}, [messages]);
+
+
+
+
   return (
     <>
    
@@ -36,7 +46,7 @@ console.log(currentUser.uid)
 {/* </div> */}
 {/* </div> */} 
   
-  <div className={`message overflow-y-auto  p-3 flex ${messages.senderId === currentUser.uid ? "justify-end" : "justify-start"} ${messages.senderId === currentUser.uid && "owner"}  `}>
+  <div    ref={ref} className={`message  scroll-smooth overflow-y-auto p-3 flex ${messages.senderId === currentUser.uid ? "justify-end" : "justify-start"} ${messages.senderId === currentUser.uid && "owner"}  `}>
      
     <div className= {`img   w-12 h-12 rounded-full bg-rose-400 p-0.5  flex justify-start ${messages.senderId===currentUser.uid && "  owner"} `}>
     <img  src="https://th.bing.com/th/id/OIP.Gfp0lwE6h7139625a-r3aAHaHa?rs=1&pid=ImgDetMain" alt="" />
