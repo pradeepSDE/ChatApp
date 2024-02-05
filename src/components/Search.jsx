@@ -108,10 +108,15 @@ const Search = () => {
     <>
       {err && <span>error ho giyo</span>}
 
-      <div className="">
-        <div className="w-full p-2 mt-1 font-sans ">
+      <div className="p-2.5 mt-1 bg-white  flex items-center justify-start">
+        <h1 className="text-2xl pl-2 font-sans font-bold ">Chats</h1>
+
+      </div>
+
+      <div className="rounded-4xl">
+        <div className="w-full p-2 mt-1 font-sans rounded-2xl">
           <input
-          className="border-solid border-red-500 p-2 w-full text-xl font-sans"
+          className=" border-red-500 p-2 rounded-2xl bg-slate-200 w-full text-xl font-sans"
             type="text"
             placeholder="Find a user"
             onKeyDown={handleKey}
@@ -121,7 +126,7 @@ const Search = () => {
         </div>
 
         {user ? (
-          <div className=" flex flex-start items-center border-black bg-cyan-200 hover:bg-cyan-300 p-2.5 border-b-black " onClick={handleSelect}>
+          <div className=" flex flex-start items-center border-black bg-white hover:bg-slate-200 p-2.5 border-b-black " onClick={handleSelect}>
             <img
               className="avatar "
               src="https://th.bing.com/th/id/OIP.Gfp0lwE6h7139625a-r3aAHaHa?rs=1&pid=ImgDetMain"

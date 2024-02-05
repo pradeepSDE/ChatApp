@@ -12,7 +12,7 @@ const MessangerConsole = () => {
     <>
      <div className="messageconsole">
 
-        <div className="profiles">
+        <div className="profiles   border-2 border-slate-200 ">
 <Search/>
 <Chats/>
 

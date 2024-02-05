@@ -28,38 +28,16 @@ useEffect(() => {
 
   return (
     <>
-   
-   {/* <div class="bg-slate-800 h-[29rem] relative">
-        {/* <!-- Chatbox-body message-box--> */}
-   {/* <div class="px-4 py-8"> */}
-    {/* <div class="flex gap-3"> */}
-                    {/* <!-- Icon image --> */}
-     {/* <div class="w-12 h-12 rounded-full bg-rose-400 p-0.5"> */}
-      {/* <img src="https://pbs.twimg.com/profile_images/1397151839850729475/1FvqSN6H_400x400.jpg" alt="" class="h-full w-full object-cover rounded-full"/> */}
-      {/* </div> */}
-                    {/* <!-- Text Message --> */}
-     {/* <div class="text-sm p-5 w-[75%] bg-slate-600 text-slate-100 rounded-lg relative before:absolute before:content-[''] before:w-3 before:h-3 before:bg-slate-600 before:rotate-45 before: before:-left-1 before:top-4"> */}
-      {/* <p>{messages.text}</p> */}
-      
-      {/* </div> */}
-  {/* </div> */}
-{/* </div> */}
-{/* </div> */} 
-  
-  <div    ref={ref} className={`message  scroll-smooth overflow-y-auto p-3 flex ${messages.senderId === currentUser.uid ? "justify-end" : "justify-start"} ${messages.senderId === currentUser.uid && "owner"}  `}>
+  <div    ref={ref} className={`message  object-scale-downn   scroll-smooth overflow-y-auto p-3 flex items-center p-2.5 ${messages.senderId === currentUser.uid ? "justify-end " : "justify-start"} ${messages.senderId === currentUser.uid && "owner"}  `}>
      
-    <div className= {`img   w-12 h-12 rounded-full bg-rose-400 p-0.5  flex justify-start ${messages.senderId===currentUser.uid && "  owner"} `}>
-    <img  src="https://th.bing.com/th/id/OIP.Gfp0lwE6h7139625a-r3aAHaHa?rs=1&pid=ImgDetMain" alt="" />
+    <div className= {`  w-12 h-12 rounded-full bg-rose-400 p-0.5  flex justify-start ${messages.senderId===currentUser.uid? "hidden":""} `}>
+    <img  src="https://th.bing.com/th/id/OIP.Gfp0lwE6h7139625a-r3aAHaHa?rs=1&pid=ImgDetMain   " alt="" />
     </div>
- <div className="messsageInfo p-1.5">
+ <div className={`messsageInfo rounded-3xl text-xl  p-2.5 pl-4 pr-4 m-2  ${messages.senderId === currentUser.uid ? " bg-blue-500 text-white" : " bg-slate-200"} p-1.5`}>
   <p>{messages.text}</p>
  </div>
      
 </div>
-      
-  
-
-
 
     </>
   )

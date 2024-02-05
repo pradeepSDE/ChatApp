@@ -56,7 +56,7 @@ try {
     // <>p</>
     <div className=" ">
       {Object.entries(chats)?.sort((a,b)=>b[1].date - a[1].date).map((chat) => (
-        <div className=" bg-cyan-200 hover:bg-cyan-300 p-1.5 mt-2" key={chat[0]} onClick={()=>handleSelect(chat[1].userInfo)} >
+        <div className=" rounded-xl bg-white hover:bg-slate-200 p-1.5 mt-2" key={chat[0]} onClick={()=>handleSelect(chat[1].userInfo)} >
           {/* <img src={chat[1].userInfo.photoURL} alt="" /> */}
           <div className="flex">
 
