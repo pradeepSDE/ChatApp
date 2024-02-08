@@ -126,16 +126,20 @@ const Search = () => {
       </div>
 
       <div className="rounded-4xl h-full  ">
+        <div className="flex items-center justify-center">
+          
         <div className="w-full p-2  font-sans rounded-2xl">
           <input
           className=" border-red-500 p-2 rounded-2xl bg-slate-200 w-full text-xl font-sans"
-            type="text"
-            placeholder="Find a user"
-            onKeyDown={handleKey}
-            onChange={(e) => Setusername(e.target.value)}
-            value={username}
+          type="text"
+          placeholder="Find a user"
+          onKeyDown={handleKey}
+          onChange={(e) => Setusername(e.target.value)}
+          value={username}
           />
         </div>
+        <button className="p-2.5 text-white h-10  bg-blue-500 rounded-xl mr-2" onClick={handleSearch}>Search</button>
+          </div>
 
         {user ? (
           <div className=" flex flex-start items-center border-black bg-white hover:bg-slate-200 p-2.5 border-b-black " onClick={handleSelect}>
