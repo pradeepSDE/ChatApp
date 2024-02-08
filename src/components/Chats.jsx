@@ -5,6 +5,7 @@ import { auth } from "../App";
 import AuthContext from "../context/AuthContext";
 import ChatContext from "../context/ChatContext";
 import '../msgcon.css'
+import { useNavigate } from "react-router";
 
 
 const Chats = () => {
@@ -12,9 +13,30 @@ const Chats = () => {
   const {currentUser}=useContext(AuthContext)
   const {dispatch}=useContext(ChatContext)
   // console.log(currentUser)
+  const navigate = useNavigate();
   //   const { dispatch } = useContext(ChatContext);
   
-//   try {
+  const [windowSize, setWindowSize] = useState(getWindowSize());
+
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowSize(getWindowSize());
+    }
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, []);
+
+  
+function getWindowSize() {
+  const {innerWidth, innerHeight} = window;
+  return {innerWidth, innerHeight};
+}
+const w = windowSize.innerWidth;
+
 try {
     var uid  = currentUser.uid
 } catch (error) {
@@ -49,16 +71,21 @@ try {
     console.log("ok")
   
     dispatch({ type: "CHANGE_USER", payload: u });
+    if(w<600){
+
+      navigate('/chatBox')
+    }
 };
 
 
   return (
     // <>p</>
     <div className=" ">
+      <p></p>
       {Object.entries(chats)?.sort((a,b)=>b[1].date - a[1].date).map((chat) => (
         <div className=" rounded-xl bg-white hover:bg-slate-200 p-1.5 mt-2" key={chat[0]} onClick={()=>handleSelect(chat[1].userInfo)} >
           {/* <img src={chat[1].userInfo.photoURL} alt="" /> */}
-          <div className="flex">
+          <div className="flex  ">
 
           <div>
           <img

@@ -9,15 +9,17 @@ const MessangerConsole = () => {
 
 
   return (
-    <>
+    <>  
+    {/* <div className='lg:hidden  '>
+<Search/>
+    </div> */}
      <div className="messageconsole">
-
-        <div className="profiles   border-2 border-slate-200 ">
+        <div className="profiles hidden1 lg:block   border-2 border-slate-200 ">
 <Search/>
 <Chats/>
 
         </div>
-        <div className="chat overflow-y-auto">
+        <div className="chat hidden lg:block overflow-y-auto">
 
                 <Chat/>
 

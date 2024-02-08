@@ -16,19 +16,22 @@ import { db,auth } from "../App";
 import { getAuth, getIdToken,onAuthStateChanged,updateProfile } from "firebase/auth";
 import firebase from 'firebase/compat/app'
 import AuthContext from "../context/AuthContext";
+import { Navigate, useNavigate } from "react-router";
 
 
 
 
 
 const Search = () => {
+  const navigate=useNavigate();
  
   const [username, Setusername] = useState("");
   const [err, setErr] = useState(false);
   const [user, setUser] = useState(null);
   const authUser = JSON.parse(localStorage.getItem("user"));
   const {currentUser}= useContext(AuthContext)
-
+  var w = window.innerWidth;
+  console.log(w)
   const handleSearch = async () => {
     const q = query(
       collection(db, "users"),
@@ -56,9 +59,16 @@ const Search = () => {
   };
 
   console.log(authUser);
+
+
   const handleSelect = async () => {
-   
- 
+   console.log(w)
+    if(w<600){
+      console.log("width")
+      navigate('/chatBox')
+    }
+    navigate('/chatBox')
+    
     console.log("handleSelect call");
     console.log(user.uid)
     console.log(authUser.displayName)
@@ -107,14 +117,16 @@ const Search = () => {
   return (
     <>
       {err && <span>error ho giyo</span>}
+      <div className="flex-1 overflow-hidden">
 
-      <div className="p-2.5 mt-1 bg-white  flex items-center justify-start">
-        <h1 className="text-2xl pl-2 font-sans font-bold ">Chats</h1>
+
+      <div className="p-2.5    bg-white  flex items-center justify-start">
+        <h1 className="text-2xl h-full pl-2 font-sans font-bold ">Chats</h1>
 
       </div>
 
-      <div className="rounded-4xl">
-        <div className="w-full p-2 mt-1 font-sans rounded-2xl">
+      <div className="rounded-4xl h-full  ">
+        <div className="w-full p-2  font-sans rounded-2xl">
           <input
           className=" border-red-500 p-2 rounded-2xl bg-slate-200 w-full text-xl font-sans"
             type="text"
@@ -132,6 +144,42 @@ const Search = () => {
               src="https://th.bing.com/th/id/OIP.Gfp0lwE6h7139625a-r3aAHaHa?rs=1&pid=ImgDetMain"
               alt="img"
             />
+            <div className="userChatInfom   border-black">
+              <span className="font-semibold text-3xl ">{user.displayName}</span>
+              <button className="bg-blue-500 rounded-2xl p-2 text-white font-sans ml-20 justify-end ">Add</button>
+            </div>
+          </div>
+        ) : (
+          <span></span>
+        )}
+      </div>
+
+      {/* mobile screen part */}
+{/* 
+      <div className="p-2.5 lg:hidden  bg-white  flex items-center justify-start">
+        <h1 className="text-2xl pl-2 font-sans font-bold ">Chats</h1>
+
+      </div> */}
+{/* 
+      <div className="rounded-4xl lg:hidden">
+        <div className="w-full p-2  font-sans rounded-2xl">
+          <input
+          className=" border-red-500 p-2 rounded-2xl bg-slate-200 w-full text-xl font-sans"
+          type="text"
+            placeholder="Find a user"
+            onKeyDown={handleKey}
+            onChange={(e) => Setusername(e.target.value)}
+            value={username}
+            />
+        </div>
+
+        {user ? (
+          <div className=" flex flex-start items-center border-black bg-white hover:bg-slate-200 p-2.5 border-b-black " onClick={handleSelect}>
+            <img
+              className="avatar "
+              src="https://th.bing.com/th/id/OIP.Gfp0lwE6h7139625a-r3aAHaHa?rs=1&pid=ImgDetMain"
+              alt="img"
+            />
             <div className="userChatInfo border-black">
               <span className="font-semibold text-3xl ">{user.displayName}</span>
             </div>
@@ -139,7 +187,8 @@ const Search = () => {
         ) : (
           <span></span>
         )}
-      </div>
+      </div> */}
+              </div>
     </>
   );
 };

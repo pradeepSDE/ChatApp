@@ -14,6 +14,7 @@ import PrivateRoute from './components/PrivateRoute';
 import SignUp from './components/SignUp';
 import { getFirestore } from "firebase/firestore";
 import {getStorage} from "firebase/storage";
+import Chatbox from './components/Chatbox';
 
 
 const firebaseConfig = {
@@ -49,7 +50,7 @@ function App() {
       <Route exact path='/' element={<SignIn/>}/>
       <Route exact path='/about' element={<About/>}/>
       <Route exact path ='/SignIn' element={<SignIn/>}/>
-
+<Route exact path = '/chatBox' element={<Chatbox/>}/>
 
       {/* <Route exact path='/private' element={<PrivateRoute/>}>
       <Route exact path='UserProfile' element={<UserProfile/>}/>
