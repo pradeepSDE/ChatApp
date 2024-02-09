@@ -15,7 +15,7 @@ import SignUp from './components/SignUp';
 import { getFirestore } from "firebase/firestore";
 import {getStorage} from "firebase/storage";
 import Chatbox from './components/Chatbox';
-
+import { getMessaging } from "firebase/messaging/sw";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBejY-aL680nkVGQf55mtoLTzNg-sSRRj4",
@@ -34,6 +34,8 @@ const firebaseConfig = {
   const auth = getAuth(app)
   const db = getFirestore(app);
   const storage = getStorage(app);
+  const messaging = getMessaging(app);
+
 function App() {
 
 
@@ -71,6 +73,6 @@ function App() {
        
   );
 }
-export {db,auth,storage} ;
+export {db,auth,storage,messaging} ;
 export default App;
 

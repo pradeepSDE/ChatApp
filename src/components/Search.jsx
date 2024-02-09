@@ -30,8 +30,28 @@ const Search = () => {
   const [user, setUser] = useState(null);
   const authUser = JSON.parse(localStorage.getItem("user"));
   const {currentUser}= useContext(AuthContext)
-  var w = window.innerWidth;
-  console.log(w)
+  
+    
+    const [windowSize, setWindowSize] = useState(getWindowSize());
+  
+    useEffect(() => {
+      function handleWindowResize() {
+        setWindowSize(getWindowSize());
+      }
+  
+      window.addEventListener('resize', handleWindowResize);
+  
+      return () => {
+        window.removeEventListener('resize', handleWindowResize);
+      };
+    }, []);
+  
+    
+  function getWindowSize() {
+    const {innerWidth, innerHeight} = window;
+    return {innerWidth, innerHeight};
+  }
+  const w = windowSize.innerWidth;
   const handleSearch = async () => {
     const q = query(
       collection(db, "users"),
@@ -67,7 +87,7 @@ const Search = () => {
       console.log("width")
       navigate('/chatBox')
     }
-    navigate('/chatBox')
+    
     
     console.log("handleSelect call");
     console.log(user.uid)
