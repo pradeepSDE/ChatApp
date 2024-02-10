@@ -14,7 +14,7 @@ const MessangerConsole = () => {
 <Search/>
     </div> */}
      <div className="messageconsole">
-        <div className="profiles hidden1 lg:block   border-2 border-slate-200 ">
+        <div className="profiles hidden1 lg:block border-t-white  border-2 border-slate-200 ">
 <Search/>
 <Chats/>
 

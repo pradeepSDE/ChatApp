@@ -17,6 +17,7 @@ import { getAuth, getIdToken,onAuthStateChanged,updateProfile } from "firebase/a
 import firebase from 'firebase/compat/app'
 import AuthContext from "../context/AuthContext";
 import { Navigate, useNavigate } from "react-router";
+import { Bars } from "react-loader-spinner";
 
 
 
@@ -30,8 +31,7 @@ const Search = () => {
   const [user, setUser] = useState(null);
   const authUser = JSON.parse(localStorage.getItem("user"));
   const {currentUser}= useContext(AuthContext)
-  
-    
+  const[loadiing ,  setLoading]=useState(false)    
     const [windowSize, setWindowSize] = useState(getWindowSize());
   
     useEffect(() => {
@@ -52,15 +52,13 @@ const Search = () => {
     return {innerWidth, innerHeight};
   }
   const w = windowSize.innerWidth;
+
   const handleSearch = async () => {
+    setLoading(true)
     const q = query(
       collection(db, "users"),
       where("displayName", "==", username)
     );
-
-    console.log("handleSeartch chal;a");
-    console.log(currentUser)
-    
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
@@ -68,8 +66,10 @@ const Search = () => {
         setUser(doc.data());
       });
     } catch (error) {
+      setLoading(false)
       setErr(true);
     }
+    setLoading(false)
 
   };
 
@@ -158,8 +158,17 @@ const Search = () => {
           value={username}
           />
         </div>
-        <button className="p-2.5 text-white h-10  bg-blue-500 rounded-xl mr-2" onClick={handleSearch}>Search</button>
+        <button className="p-2.5 text-white h-10  bg-blue-500 items-center justify-center rounded-xl mr-2" onClick={handleSearch}>Search</button>
           </div>
+          {loadiing&& <Bars
+      height="150"
+      width="150"
+      color="#00BFFF"
+      ariaLabel="bars-loading"
+      wrapperStyle={{}}
+      wrapperClass=""
+      visible={true}
+      /> }
 
         {user ? (
           <div className=" flex flex-start items-center border-black bg-white hover:bg-slate-200 p-2.5 border-b-black " onClick={handleSelect}>
