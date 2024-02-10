@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import ChatContext from '../context/ChatContext'
+import Inputmsg from './Inputmsg'
+import Messages from '../Messages'
+import { SelectContext } from '../context/SelectContext'
+
+
 
 const Chat = () => {
-
+const {Select,setSelect}=useContext(SelectContext)
   const {data}=useContext(ChatContext)
   console.log(data)
+  console.log(data.user.userId)
+  useEffect(()=>{
+if (data.user.userId) {
+  setSelect(true)
+}
+  },[])
+
+console.log("ischatselected",Select)
   return (
     <div className='msgNavbar sticky top-0 z-9999 overflow-hidden'>
       {/* <!-- This is an example component --> */}
@@ -31,6 +44,8 @@ const Chat = () => {
 </div>
 
 <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
+{/* <Messages/> */}
+{/* <Inputmsg/> */}
     </div>
   )
 }
