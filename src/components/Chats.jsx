@@ -61,9 +61,14 @@ try {
     
         uid && getChats();
       }, [uid]);
-      
+      // console.log(Object.entries(chats))
+
+//   } catch (error) {
+//     console.log(error)
+//   }
+// console.log(chats[1].userInfo.displayName)
   const handleSelect = (u) => {
-  
+    console.log("ok")
   
     dispatch({ type: "CHANGE_USER", payload: u });
     if(w<600){

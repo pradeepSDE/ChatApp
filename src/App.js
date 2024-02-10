@@ -7,7 +7,7 @@ import SignIn from './components/SignIn';
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import AuthContext from './context/AuthContext'
-import {useContext, useState} from 'react'
+import {useState} from 'react'
 // import Profile from './components/Profile';
 import UserProfile from './components/UserProfile';
 import PrivateRoute from './components/PrivateRoute';
@@ -16,7 +16,6 @@ import { getFirestore } from "firebase/firestore";
 import {getStorage} from "firebase/storage";
 import Chatbox from './components/Chatbox';
 import { getMessaging } from "firebase/messaging/sw";
-import { SelectContext } from './context/SelectContext';
 
 const firebaseConfig = {
     apiKey: "AIzaSyBejY-aL680nkVGQf55mtoLTzNg-sSRRj4",
@@ -36,16 +35,16 @@ const firebaseConfig = {
   const db = getFirestore(app);
   const storage = getStorage(app);
   const messaging = getMessaging(app);
-  
-  function App() {
-    
-    
 
-const [Select,setSelect]=useState(false)
+function App() {
+
+
+
 
   return (
-      <SelectContext.Provider value={{Select,setSelect}}>
-        
+
+    
+
     <div className="App">
       <Navbar/>
      
@@ -72,7 +71,6 @@ const [Select,setSelect]=useState(false)
        
        
        
-      </SelectContext.Provider>
   );
 }
 export {db,auth,storage,messaging} ;

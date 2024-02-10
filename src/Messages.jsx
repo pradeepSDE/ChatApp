@@ -30,6 +30,9 @@ useEffect(()=>{
 
 },[data.chatId,err])
 
+// await messages
+console.log(messages)
+console.log(err)
 
 // setMessages('')
   return (
