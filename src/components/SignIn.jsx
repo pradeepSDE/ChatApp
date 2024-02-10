@@ -101,11 +101,15 @@ const SignIn = () => {
             value={password}
             onChange={(e)=>setPassword(e.target.value)}/>
             
-            <button className="w-full  bg-blue-500 hover:bg-sky-700 px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Sign In</button>
-            <p className="text-sm leading-relaxed text-grey-900">Not registered yet?<span> </span>
-            <Link to={'/signUp'} className="font-bold  underline text-grey-700" >SignUp</Link><span> </span>
+            <button className="w-full  hover:bg-blue-500 shadow-md shadow-blue-500 border-2 border-blue-500 px-6 py-5 mb-5 text-sm font-bold leading-none hover:text-white text-black transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Sign In</button>
+            
+            <div className='mt-4'>
+            <Link to={'/signUp'} className="font-bold  bg-green-500 w- border-green-500 hover:bg-green-700 text-white shadow-green-400 shadow-md px-3 py-4 mb-5  text-sm  border-2 rounded-xl text-grey-700" >Sign Up</Link><span> </span>
+
+            </div>
+            
              
-              and Create an Account</p>
+            
           </form>
         </div>
               </div>
