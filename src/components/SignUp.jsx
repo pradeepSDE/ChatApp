@@ -81,7 +81,7 @@ function SignUp() {
   return (
     <>
     <body className="bg-white rounded-lg ">    
-    <div className="container flex flex-col mx-auto bg-white rounded-lg  pt-12">
+    <div className="container flex flex-col mx-auto bg-white rounded-lg   my-5">
        <div className="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
   <div className="flex items-center justify-center w-full lg:p-12">
     <div className="flex items-center   xl:p-10">
@@ -113,7 +113,7 @@ function SignUp() {
         value={password}
         onChange={(e)=>setPassword(e.target.value)}/>
         
-        <button className="w-full bg-blue-500 hover:bg-sky-700 px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Sign In</button>
+        <button className="w-full bg-blue-500 hover:bg-sky-700 px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Sign Up</button>
         <p className="text-sm leading-relaxed text-grey-900">Already have an account? 
         <Link to={'/SignIn'} className="font-bold text-grey-700" >  SignIn  </Link>
          </p>
