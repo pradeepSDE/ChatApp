@@ -1,21 +1,16 @@
 import { doc, onSnapshot } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { db } from "../App"
-import { auth } from "../App";
 import AuthContext from "../context/AuthContext";
 import ChatContext from "../context/ChatContext";
 import '../msgcon.css'
 import { useNavigate } from "react-router";
 
-
 const Chats = () => {
   const [chats, setChats] = useState([]);
   const {currentUser}=useContext(AuthContext)
   const {dispatch}=useContext(ChatContext)
-  // console.log(currentUser)
   const navigate = useNavigate();
-  //   const { dispatch } = useContext(ChatContext);
-  
   const [windowSize, setWindowSize] = useState(getWindowSize());
 
   useEffect(() => {
@@ -61,30 +56,24 @@ try {
     
         uid && getChats();
       }, [uid]);
-      // console.log(Object.entries(chats))
-
-//   } catch (error) {
-//     console.log(error)
-//   }
-// console.log(chats[1].userInfo.displayName)
+      
   const handleSelect = (u) => {
-    console.log("ok")
-  
+   
     dispatch({ type: "CHANGE_USER", payload: u });
-    if(w<600){
-
+    if(w<700){
+      
       navigate('/chatBox')
     }
 };
 
 
   return (
-    // <>p</>
+  <>
+    
     <div className=" ">
       <p></p>
       {Object.entries(chats)?.sort((a,b)=>b[1].date - a[1].date).map((chat) => (
         <div className=" rounded-xl bg-white hover:bg-slate-200 p-1.5 mt-2" key={chat[0]} onClick={()=>handleSelect(chat[1].userInfo)} >
-          {/* <img src={chat[1].userInfo.photoURL} alt="" /> */}
           <div className="flex  ">
 
           <div>
@@ -94,7 +83,7 @@ try {
               alt="img"
               />
           </div>
-          <div className="flex flex-col ml-9">
+          <div className="flex flex-col justify-center items-center ml-9">
 
             <span className="text-2xl mt-2 font-sans font-semibold">{chat[1].userInfo.displayName}</span>
             <p className="font-light mt-1.5">{chat[1].lastMessage?.text}</p>
@@ -104,6 +93,8 @@ try {
         </div>
       ))}
     </div>
+   
+  </>
   );
 };
 

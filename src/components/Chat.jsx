@@ -10,10 +10,12 @@ const Chat = () => {
   const {data}=useContext(ChatContext)
   console.log(data)
   return (
+    
     <div className='msgNavbar sticky top-0 z-9999 overflow-hidden'>
       {/* <!-- This is an example component --> */}
 <div class=" mx-auto">
     
+    {data.user.displayName && 
     <nav class="border-gray-200 w-full  bg-white border-2 border-slate-200   p-3.5 rounded-md">
     <div class="container mx-auto flex flex-wrap items-center justify-between">
         <a href="#" class="flex">
@@ -30,12 +32,16 @@ const Chat = () => {
     </div>
     </nav>
 
+    }
    
 </div>
 
 <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
 <Messages/>
+<div className='mt-96'>
+
 {data.user.displayName? <Inputmsg/>: <Nochatselect/>}
+</div>
     </div>
   )
 }

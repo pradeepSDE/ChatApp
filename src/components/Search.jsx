@@ -10,13 +10,16 @@ import {
   updateDoc,
   serverTimestamp,
 } from "firebase/firestore";
-// import firebase form 'firebase/app'
+import { FaSearch } from 'react-icons/fa';
 import "../index.css";
 import { db,auth } from "../App";
 import { getAuth, getIdToken,onAuthStateChanged,updateProfile } from "firebase/auth";
 import firebase from 'firebase/compat/app'
 import AuthContext from "../context/AuthContext";
 import { Navigate, useNavigate } from "react-router";
+import RandomUserChats from "./RandomUserChats";
+import Chats from "./Chats";
+import ToggleButton from 'react-toggle-button'
 
 
 
@@ -30,6 +33,7 @@ const Search = () => {
   const [user, setUser] = useState(null);
   const authUser = JSON.parse(localStorage.getItem("user"));
   const {currentUser}= useContext(AuthContext)
+  const[Random,setRandom]=useState(false)
   
     
     const [windowSize, setWindowSize] = useState(getWindowSize());
@@ -133,15 +137,47 @@ const Search = () => {
     setUser(null);
     Setusername("");
   };
+  
+  const [isChecked, setIsChecked] = useState(false);
+  
+  const handleToggle = () => {
+    setIsChecked(!isChecked);
+  };
+  
+  useEffect(()=>{
+  isChecked? setRandom(false):setRandom(true)
+  },[isChecked])
 
   return (
     <>
       {err && <span>error ho giyo</span>}
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 pb-4  overflow-hidden">
 
-
-      <div className="p-2.5    bg-white  flex items-center justify-start">
+      <div className="p-2.5 border-b-2  border-slate-200  bg-white  flex items-center justify-start">
         <h1 className="text-2xl h-full pl-2 font-sans font-bold ">Chats</h1>
+        <div className="flex  justify-center items-center ml-auto">
+
+    
+
+        
+        <label htmlFor="toggle" className="font-semibold font-sans text-lg  p-2 ">Random Users?</label>
+
+        <label htmlFor="toggle" className="bg-slate-200 border-double border-2 border-slate-400 cursor-pointer relative w-16 h-8 rounded-full">
+          <input 
+          type="checkbox"  
+          name="toggle" 
+          id="toggle" 
+          className="sr-only peer "
+          checked={isChecked}
+          onChange={handleToggle} 
+          />
+          <span className="w-2/5 peer-checked:left-1 h-4/5 bg-blue-500 absolute rounded-full peer-checked:bg-blue-200 peer-checked:right-11 top-1  transition-all duration-700  "></span>
+        </label>
+        {/* <input type="checkbox" className=" p-2 ml-auto  appearance-none   h-5 w-5 rounded-full cursor-pointer border-2 border-gray-300 shadow-lg shadow-blue-300 outline-4 outline-red-700 checked:border-blue-500 checked:bg-blue-500 focus:ring-2 focus:ring-blue-500" name="toggle" id="toggle" /> */}
+
+        </div>
+    
+      {/* <button className="p-2 bg-blue-500 rounded-lg ml-auto text-white" onClick={handleRA}>Random Users</button> */}
 
       </div>
 
@@ -149,6 +185,7 @@ const Search = () => {
         <div className="flex items-center justify-center">
           
         <div className="w-full p-2  font-sans rounded-2xl">
+        
           <input
           className=" border-red-500 p-2 rounded-2xl bg-slate-200 w-full text-xl font-sans"
           type="text"
@@ -157,6 +194,7 @@ const Search = () => {
           onChange={(e) => Setusername(e.target.value)}
           value={username}
           />
+      
         </div>
         <button className="p-2.5 text-white h-10  bg-blue-500 rounded-xl mr-2" onClick={handleSearch}>Search</button>
           </div>
@@ -213,6 +251,7 @@ const Search = () => {
         )}
       </div> */}
               </div>
+              {Random? <RandomUserChats/>:<Chats/>}
     </>
   );
 };

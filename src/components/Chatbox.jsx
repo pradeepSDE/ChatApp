@@ -7,8 +7,7 @@ const Chatbox = () => {
   return (
     <div>
       <Chat/>
-     <Messages/>
-     <Inputmsg/>
+
     </div>
   )
 }
