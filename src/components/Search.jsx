@@ -139,6 +139,10 @@ const Search = () => {
   };
   
   const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(()=>{
+setIsChecked(true)
+  },[])
   
   const handleToggle = () => {
     setIsChecked(!isChecked);
@@ -216,40 +220,6 @@ const Search = () => {
         )}
       </div>
 
-      {/* mobile screen part */}
-{/* 
-      <div className="p-2.5 lg:hidden  bg-white  flex items-center justify-start">
-        <h1 className="text-2xl pl-2 font-sans font-bold ">Chats</h1>
-
-      </div> */}
-{/* 
-      <div className="rounded-4xl lg:hidden">
-        <div className="w-full p-2  font-sans rounded-2xl">
-          <input
-          className=" border-red-500 p-2 rounded-2xl bg-slate-200 w-full text-xl font-sans"
-          type="text"
-            placeholder="Find a user"
-            onKeyDown={handleKey}
-            onChange={(e) => Setusername(e.target.value)}
-            value={username}
-            />
-        </div>
-
-        {user ? (
-          <div className=" flex flex-start items-center border-black bg-white hover:bg-slate-200 p-2.5 border-b-black " onClick={handleSelect}>
-            <img
-              className="avatar "
-              src="https://th.bing.com/th/id/OIP.Gfp0lwE6h7139625a-r3aAHaHa?rs=1&pid=ImgDetMain"
-              alt="img"
-            />
-            <div className="userChatInfo border-black">
-              <span className="font-semibold text-3xl ">{user.displayName}</span>
-            </div>
-          </div>
-        ) : (
-          <span></span>
-        )}
-      </div> */}
               </div>
               {Random? <RandomUserChats/>:<Chats/>}
     </>

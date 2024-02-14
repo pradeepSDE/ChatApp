@@ -38,7 +38,7 @@ const Chat = () => {
 
 <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
 <Messages/>
-<div className='mt-96'>
+<div className=''>
 
 {data.user.displayName? <Inputmsg/>: <Nochatselect/>}
 </div>
