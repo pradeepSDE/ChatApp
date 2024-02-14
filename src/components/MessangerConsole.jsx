@@ -22,9 +22,9 @@ const MessangerConsole = () => {
         <div className="chat hidden lg:block overflow-y-auto">
 
                 <Chat/>
-
+{/* 
                 <Messages/>
-                <Inputmsg/>
+                <Inputmsg/> */}
 
         </div>
         </div> 

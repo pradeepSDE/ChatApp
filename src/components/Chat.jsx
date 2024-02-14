@@ -1,6 +1,9 @@
 import React from 'react'
 import { useContext } from 'react'
 import ChatContext from '../context/ChatContext'
+import Messages from '../Messages'
+import Inputmsg from './Inputmsg'
+import Nochatselect from './Nochatselect'
 
 const Chat = () => {
 
@@ -31,6 +34,8 @@ const Chat = () => {
 </div>
 
 <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
+<Messages/>
+{data.user.displayName? <Inputmsg/>: <Nochatselect/>}
     </div>
   )
 }
