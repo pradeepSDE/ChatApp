@@ -1,11 +1,7 @@
 import React from 'react'
 import '../msgcon.css'
 import Search from './Search'
-import Chats from './Chats'
 import Chat from './Chat'
-import Messages from '../Messages'
-import Inputmsg from './Inputmsg'
-import RandomUserChats from './RandomUserChats'
 const MessangerConsole = () => {
 
 
@@ -28,6 +24,7 @@ const MessangerConsole = () => {
                 <Inputmsg/> */}
 
         </div>
+        
         </div> 
     </>
   )

@@ -76,7 +76,7 @@ try {
         <div className=" rounded-xl bg-white hover:bg-slate-200 p-1.5 mt-2" key={chat[0]} onClick={()=>handleSelect(chat[1].userInfo)} >
           <div className="flex  ">
 
-          <div>
+          <div className="items-center flex">
           <img
               className="avatar "
               src="https://th.bing.com/th/id/OIP.Gfp0lwE6h7139625a-r3aAHaHa?rs=1&pid=ImgDetMain"

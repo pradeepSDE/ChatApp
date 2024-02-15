@@ -36,7 +36,7 @@ cursor: pointer;
 .avatar{
   border-radius: 50%;
   border: 2px black;
-  height: 10vh;
+  height: 6vh;
   justify-content: left;
 
 }
