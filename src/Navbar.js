@@ -80,19 +80,19 @@ return (
 		
     	{token? <>
 			<div className=' hidden lg:block mr-4'>
-                 <button onClick={handleclick}  id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class=" text-black mr-10 bg-slate-100  hover:bg-slate-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm   text-center flex  items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                 <button onMouseOver={handleclick}  onClick={handleclick}  id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class=" text-black mr-10 bg-slate-100  hover:bg-slate-200 focus:ring-4 focus:outline-none ring-blue-300 ring-3 shadow-lg shadow-blue-500 focus:ring-blue-400 font-medium rounded-full text-sm   text-center flex  items-center" type="button">
 				 <img
               className="avatar  "
               src="https://th.bing.com/th/id/OIP.Gfp0lwE6h7139625a-r3aAHaHa?rs=1&pid=ImgDetMain"
               alt="img"
               />
-	            <svg class="w-2.5 h-2.5 ml-8 mt-6 border-2 border-white bg-slate-300 rounded-full  absolute ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+	            <svg class="w-2.5 h-2.5 drop  mt-6 border-2 border-white bg-slate-300 rounded-full  absolute ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                 </svg>
                </button>
 
 {/* dropdown menu */}
-<div id="dropdown" class={`z-10  ${pr? ` `:`hidden`} mt-4   absolute  bg-slate-100 min-w-160 shadow-md z-10  divide-y divide-gray-100 rounded-lg  w-40 dark:bg-gray-700`}>
+<div id="dropdown" class={`z-10  ${pr? ` `:`hidden`} mt-4   absolute  bg-slate-100 min-w-160 shadow-md z-10  divide-y divide-gray-100 rounded-lg  w-40 `}>
 	<div className='flex items-center p-2 border-2 border-b-2 border-b-slate-300'>
 	    <img
               className="avatar  "
@@ -101,16 +101,16 @@ return (
               />
 			  <h1 className='pl-2'>{currentUser&& currentUser.displayName}</h1>
 	</div>
-    <ul class="py-2  text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+    <ul class="py-2  text-sm text-gray-70" aria-labelledby="dropdownDefaultButton">
       <li>
-        <a href="#" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">Change Avatar</a>
+        <a href="#" class="block px-4 py-2 hover:bg-gray-200 ">Change Avatar</a>
       </li>
       <li>
-        <a href="#" class="block  px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+        <a href="#" class="block  px-4 py-2 hover:bg-gray-200 ">Settings</a>
       </li>
      
       <li>
-		<button onClick={handleLogout} className='btn w-full py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white'>Sign Out</button>
+		<button onClick={handleLogout} className='btn w-full py-2 hover:bg-gray-200 '>Sign Out</button>
         {/* <a href="#" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a> */}
       </li>
     </ul>
@@ -124,7 +124,7 @@ return (
 		{token ? <></>:  <Link to="/SignIn" className='hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200'>Sign In</Link>}
 		{token ? <></>:<Link to={'/signUp'} className="hidden lg:inline-block py-2 px-6 bg-green-500 hover:bg-green-600 text-sm text-white font-bold rounded-xl shadow-md shadow-green-300 border-green-300 border-md transition duration-200" > SignUp  </Link> }
         {/* {token ? <button className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" onClick={handleLogout}>LogOut</button>:<></>} */}
-		{token?<a className="text-sm text-blue-600 font-bold" href="#">About Us</a>:<></>  }
+		{token?<a className="text-sm hidden lg:block text-blue-600 font-bold" href="google.com">About Us</a>:<></>  }
 </nav>
 
 	<div  className={`navbar-menu  relative z-50 ${toggle? '':'hidden'}`}>
