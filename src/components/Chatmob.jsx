@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useContext } from "react";
 import ChatContext from "../context/ChatContext";
 import Messages from "../Messages";
@@ -10,6 +10,14 @@ import { Link } from "react-router-dom";
 const Chatmob = () => {
   const { data } = useContext(ChatContext);
   console.log(data);
+  
+const ref = useRef();
+
+useEffect(() => {
+  ref.current?.scrollIntoView({ behavior: "smooth" });
+}, []);
+
+  
   return (
     <div className="msgNavbar h-full  flex flex-col">
       {/* <!-- This is an example component --> */}
@@ -42,6 +50,7 @@ const Chatmob = () => {
 
       <div
         className={` flex send ${data.user.displayName ? "send " : ""} flex-col`}
+        ref={ref}
       >
         <Inputmsg />
       </div>
