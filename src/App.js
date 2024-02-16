@@ -1,7 +1,7 @@
 import "./App.css";
 import About from "./About";
 import Navbar from "./Navbar";
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route, Outlet, useLocation } from "react-router-dom";
 import SignIn from "./components/SignIn";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
@@ -35,21 +35,23 @@ const storage = getStorage(app);
 const messaging = getMessaging(app);
 
 function App() {
-  const[nav,setNav]=useState(true)
-  useEffect(() => {
-    const path = window.location.pathname;
-    if(path==='/chatBox'){
-setNav(false)
-    }
-  }, []);
+  const [nav, setNav] = useState(true);
 
-  const showNavbar = true;
+  const location = useLocation();
+  console.log("loc", location);
+  const currentpath = location.pathname
+    useEffect(() => {
+      
+      if(currentpath==='/chatBox'){
+  setNav(false)
+      }
+    }, [currentpath]);
 
   return (
     <>
       <div className="App">
         {/* <Navbar /> */}
-        {nav &&<Navbar/>}
+        {nav && <Navbar />}
 
         <Routes>
           <Route exact path="/" element={<SignIn />} />
