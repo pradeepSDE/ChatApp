@@ -9,9 +9,9 @@ const Chat = () => {
   const { data } = useContext(ChatContext);
   console.log(data);
   return (
-    <div className="msgNavbar h-full  flex flex-col   overflow-y-scroll">
+    <div className="msgNavbar h-full  flex flex-col">
       {/* <!-- This is an example component --> */}
-      <div class=" relative flex  ">
+      <div class=" relative h-full flex  ">
         {data.user.displayName && (
           <nav class=" w-full  z-10    bg-white border-2 border-slate-200   p-3.5 rounded-md">
             <div class="container   mx-auto flex  flex-wrap items-center justify-between">
@@ -25,7 +25,7 @@ const Chat = () => {
         )}
       </div>
 
-      <div className="flex flex-col h-full overflow-y-scroll flex-grow-1">
+      <div className="flex flex-col   flex-grow-1">
         <Messages />
       </div>
 
