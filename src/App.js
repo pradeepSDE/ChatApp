@@ -15,6 +15,7 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import Chatbox from "./components/Chatbox";
 import { getMessaging } from "firebase/messaging/sw";
+import Avatar from "./components/Avatar";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBejY-aL680nkVGQf55mtoLTzNg-sSRRj4",
@@ -68,6 +69,7 @@ function App() {
             <Route path="/private" element={<UserProfile />} />
           </Route>
           <Route exact path="/signUp" element={<SignUp />} />
+          <Route exact path="/Avatar" element={<Avatar/>}/>
         </Routes>
       </div>
     </>

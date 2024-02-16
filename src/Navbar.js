@@ -4,8 +4,8 @@ import { getAuth, signOut } from "firebase/auth";
 import "./App.css";
 import AuthContext from "./context/AuthContext";
 
-const Navbar = ({showNavbar}) => {
-  console.log(showNavbar)
+const Navbar = ({ showNavbar }) => {
+  console.log(showNavbar);
   //   const[user,setUser]=useContext(AuthContext)
   const { currentUser } = useContext(AuthContext);
   console.log(currentUser);
@@ -59,7 +59,7 @@ const Navbar = ({showNavbar}) => {
   const token = localStorage.getItem("token");
   console.log(toggle);
 
-  return  (
+  return (
     <>
       <body className="bg-blue-500  sticky">
         <nav className=" sticky px-4 py-4 flex justify-between border-b-cyan-200 border-2 items-center bg-white">
@@ -86,7 +86,7 @@ const Navbar = ({showNavbar}) => {
             <>
               <div className=" hidden lg:block mr-4">
                 <button
-                  onMouseOver={handleclick}
+                  // onMouseOver={handleclick}
                   onClick={handleclick}
                   id="dropdownDefaultButton"
                   data-dropdown-toggle="dropdown"
@@ -118,11 +118,11 @@ const Navbar = ({showNavbar}) => {
                 {/* dropdown menu */}
                 <div
                   id="dropdown"
-                  class={`z-10  ${
+                  className={`z-10 ${
                     pr ? ` ` : `hidden`
-                  } mt-4   absolute  bg-slate-100 min-w-160 shadow-md z-10  divide-y divide-gray-100 rounded-lg  w-40 `}
+                  } mt-1  fixed  bg-slate-100 min-w-160 shadow-md z-10  divide-y divide-gray-100 rounded-lg  w-40 `}
                 >
-                  <div className="flex items-center p-2 border-2 border-b-2 border-b-slate-300">
+                  <div className="flex z-50  items-center p-2 border-2 border-b-2  border-b-slate-300">
                     <img
                       className="avatar  "
                       src="https://th.bing.com/th/id/OIP.Gfp0lwE6h7139625a-r3aAHaHa?rs=1&pid=ImgDetMain"
@@ -136,10 +136,13 @@ const Navbar = ({showNavbar}) => {
                     class="py-2  text-sm text-gray-70"
                     aria-labelledby="dropdownDefaultButton"
                   >
+                
                     <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-200 ">
-                        Change Avatar
-                      </a>
+                      <Link to={"/Avatar"}>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-200 ">
+                          Change Avatar
+                        </a>
+                      </Link>
                     </li>
                     <li>
                       <a href="#" class="block  px-4 py-2 hover:bg-gray-200 ">

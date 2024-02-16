@@ -17,7 +17,7 @@ const MessangerConsole = () => {
 
 
         </div>
-        <div className="chat hidden lg:block overflow-y-auto">
+        <div className="chat hidden  lg:block overflow-y-auto">
 
                 <Chat/>
 {/* 

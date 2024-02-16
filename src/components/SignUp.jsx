@@ -35,6 +35,8 @@ function SignUp() {
         console.log(res);
         const user = res.user;
 
+        
+
         await updateProfile(user, {
           displayName: displayName,
         });
