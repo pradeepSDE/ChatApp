@@ -2,6 +2,7 @@ import React from 'react'
 import '../msgcon.css'
 import Search from './Search'
 import Chat from './Chat'
+import Accounts from './Accounts'
 const MessangerConsole = () => {
 
 
@@ -21,9 +22,10 @@ const MessangerConsole = () => {
                 <Chat/>
 {/* 
                 <Messages/>
-                <Inputmsg/> */}
+              <Inputmsg/> */}
 
         </div>
+              {/* <Accounts/> */}
         
         </div> 
     </>

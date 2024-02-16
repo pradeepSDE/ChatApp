@@ -28,7 +28,7 @@ useEffect(() => {
 
   return (
     <>
-  <div    ref={ref} className={`message  object-scale-downn   scroll-smooth overflow-y-auto p-3 flex items-center p-2.5 ${messages.senderId === currentUser.uid ? "justify-end " : "justify-start"} ${messages.senderId === currentUser.uid && "owner"}  `}>
+  <div    ref={ref} className={`message   object-scale-downn   scroll-smooth overflow-y-auto p-3 flex items-center p-2.5 ${messages.senderId === currentUser.uid ? "justify-end " : "justify-start"} ${messages.senderId === currentUser.uid && "owner"}  `}>
      
     <div className= {`  w-12 h-12 rounded-full bg-rose-400 p-0.5  flex justify-start ${messages.senderId===currentUser.uid? "hidden":""} `}>
     <img  src="https://th.bing.com/th/id/OIP.Gfp0lwE6h7139625a-r3aAHaHa?rs=1&pid=ImgDetMain   " alt="" />

@@ -4,7 +4,7 @@ const Nochatselect = () => {
    
   return (<>
     {/* <img src='/chat_4961885.png' /> */}
-    <div className='flex items-center justify-center pt-14 mt-28 flex-col'>
+    <div className='flex items-center justify-center pt-8 mt-12 flex-col'>
  
       <img src='/chat_5050201.png'  className='h-20 ' alt="" />
       

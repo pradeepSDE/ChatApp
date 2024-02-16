@@ -42,9 +42,7 @@ function App() {
 
 
   return (
-
-    
-
+<>
     <div className="App">
       <Navbar/>
      
@@ -52,22 +50,20 @@ function App() {
       <Route exact path='/' element={<SignIn/>}/>
       <Route exact path='/about' element={<About/>}/>
       <Route exact path ='/SignIn' element={<SignIn/>}/>
-<Route exact path = '/chatBox' element={<Chatbox/>}/>
 
-      {/* <Route exact path='/private' element={<PrivateRoute/>}>
-      <Route exact path='UserProfile' element={<UserProfile/>}/>
-      </Route> */}
+   
 
+      <Route exact path = '/chatBox' element={<Chatbox/>}/>
+   
 
       <Route path='/private' element={<PrivateRoute/>}>
       <Route path='/private' element={<UserProfile/>}/>
       </Route>
       <Route exact path='/signUp' element={<SignUp/>}/>
-
-
    </Routes>
     </div>
   
+</>
        
        
        
