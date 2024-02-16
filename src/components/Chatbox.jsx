@@ -5,8 +5,8 @@ import Inputmsg from "./Inputmsg";
 
 const Chatbox = () => {
   return (
-    <div className="flex flex-col chatBox ">
-      <div className="">
+    <div className="flex h-screen flex-col chatBox ">
+      <div className=" h-full">
       <Chat />
         
       </div>

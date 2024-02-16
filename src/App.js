@@ -2,7 +2,7 @@
 import './App.css';
 import About from './About';
 import Navbar from './Navbar';
-import {Routes,Route,} from 'react-router-dom';
+import {Routes,Route, Outlet,} from 'react-router-dom';
 import SignIn from './components/SignIn';
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
@@ -54,7 +54,9 @@ function App() {
 
    
 
-      <Route exact path = '/chatBox' element={<Chatbox/>}/>
+      <Route exact path = '/chatBox'  element={<Chatbox/>}>
+        {/* <Outlet/> */}
+      </Route>
    
 
       <Route path='/private' element={<PrivateRoute/>}>
