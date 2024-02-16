@@ -20,7 +20,6 @@ const ref = useRef();
 
 useEffect(() => {
   ref.current?.scrollIntoView({ behavior: "smooth" });
-  console.log("mai e se")
 }, [messages]);
 
 
