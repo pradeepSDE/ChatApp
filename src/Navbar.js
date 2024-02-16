@@ -4,7 +4,8 @@ import { getAuth, signOut } from "firebase/auth";
 import "./App.css";
 import AuthContext from "./context/AuthContext";
 
-const Navbar = () => {
+const Navbar = ({showNavbar}) => {
+  console.log(showNavbar)
   //   const[user,setUser]=useContext(AuthContext)
   const { currentUser } = useContext(AuthContext);
   console.log(currentUser);
@@ -58,7 +59,7 @@ const Navbar = () => {
   const token = localStorage.getItem("token");
   console.log(toggle);
 
-  return (
+  return  (
     <>
       <body className="bg-blue-500  sticky">
         <nav className=" sticky px-4 py-4 flex justify-between border-b-cyan-200 border-2 items-center bg-white">
