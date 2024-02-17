@@ -34,11 +34,13 @@ function SignUp() {
       .then(async (res) => {
         console.log(res);
         const user = res.user;
+        console.log(user)
 
         
 
         await updateProfile(user, {
           displayName: displayName,
+          photoURL: "https://th.bing.com/th/id/OIP.Gfp0lwE6h7139625a-r3aAHaHa?rs=1&pid=ImgDetMain"
         });
 
         await setDoc(doc(db, "users", user.uid), {
