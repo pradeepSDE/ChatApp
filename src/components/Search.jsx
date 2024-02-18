@@ -25,6 +25,7 @@ import { Navigate, useNavigate } from "react-router";
 import RandomUserChats from "./RandomUserChats";
 import Chats from "./Chats";
 import ToggleButton from "react-toggle-button";
+import { InfinitySpin, MagnifyingGlass } from "react-loader-spinner";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const Search = () => {
   const authUser = JSON.parse(localStorage.getItem("user"));
   const { currentUser } = useContext(AuthContext);
   const [Random, setRandom] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   const [windowSize, setWindowSize] = useState(getWindowSize());
 
   useEffect(() => {
@@ -56,6 +57,7 @@ const Search = () => {
   }
   const w = windowSize.innerWidth;
   const handleSearch = async () => {
+    setLoading(true);
     const q = query(
       collection(db, "users"),
       where("displayName", "==", username)
@@ -73,6 +75,7 @@ const Search = () => {
     } catch (error) {
       setErr(true);
     }
+    setLoading(false);
   };
 
   const handleKey = (e) => {
@@ -111,6 +114,7 @@ const Search = () => {
           [combID + ".userInfo"]: {
             uid: user.uid,
             displayName: user.displayName,
+            photoURL:user.photoURL
           },
           [combID + ".date"]: serverTimestamp(),
         });
@@ -119,6 +123,7 @@ const Search = () => {
           [combID + ".userInfo"]: {
             uid: authUser.uid,
             displayName: authUser.displayName,
+            photoURL:authUser.photoURL
           },
           [combID + ".date"]: serverTimestamp(),
         });
@@ -197,6 +202,20 @@ const Search = () => {
             >
               Search
             </button>
+          </div>
+          <div className="mx-auto ml-48">
+            {loading && (
+              <MagnifyingGlass
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="magnifying-glass-loading"
+                wrapperStyle={{}}
+                wrapperClass="magnifying-glass-wrapper"
+                glassColor="#c0efff"
+                color="#007FFF"
+              />
+            )}
           </div>
 
           {user ? (

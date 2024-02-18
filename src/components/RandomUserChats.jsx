@@ -6,12 +6,14 @@ import AuthContext from "../context/AuthContext";
 import ChatContext from "../context/ChatContext";
 import "../msgcon.css";
 import { useNavigate } from "react-router";
+import { MagnifyingGlass } from "react-loader-spinner";
 
 const RandomUserChats = () => {
   const [chats, setChats] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
   const navigate = useNavigate();
+  const[loading,setLoading] = useState(false)
 
   const [windowSize, setWindowSize] = useState(getWindowSize());
 
@@ -39,12 +41,14 @@ const RandomUserChats = () => {
     console.log(error);
   }
   const getRandomUsers = async () => {
+    setLoading(true)
     const querySnapshot = await getDocs(collection(db, "users"));
     querySnapshot.forEach((doc) => {
       console.log("object");
       // doc.data() is never undefined for query doc snapshots
       console.log(doc.id, " => ", doc.data());
     });
+    setLoading(false)
   };
 
   useEffect(() => {
@@ -89,6 +93,20 @@ const RandomUserChats = () => {
   return (
     // <>p</>
     <div className=" overflow-y-hidden">
+      <div className="mx-auto ml-48">
+            {loading && (
+              <MagnifyingGlass
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="magnifying-glass-loading"
+                wrapperStyle={{}}
+                wrapperClass="magnifying-glass-wrapper"
+                glassColor="#c0efff"
+                color="#007FFF"
+              />
+            )}
+          </div>
       {Object.entries(chats)?.map((chat) => (
         <div
           className=" rounded-xl overflow-y-auto bg-white hover:bg-slate-200 p-1.5 mt-2"

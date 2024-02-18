@@ -94,7 +94,7 @@ const Navbar = ({ showNavbar }) => {
                   type="button"
                 >
                   <img
-                    className="avatar object-cover  "
+                    className="avatr h-9 w-9  object-cover  "
                     src={currentUser && currentUser.photoURL}
                     alt="N/A"
                   />
@@ -124,7 +124,7 @@ const Navbar = ({ showNavbar }) => {
                 >
                   <div className="flex z-50  items-center p-2 border-2 border-b-2  border-b-slate-300">
                     <img
-                      className="avatar  "
+                      className="avatar avatr h-9 w-9  object-cover   "
                       src={currentUser && currentUser.photoURL}
                       alt="img"
                     />
@@ -138,13 +138,19 @@ const Navbar = ({ showNavbar }) => {
                   >
                     <li>
                       <Link to={"/Avatar"}>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-200 ">
-                          Change Avatar
+                        <a
+                          href="#"
+                          class="block px-4 py-2 border-b-2 border-b-slate-200 hover:bg-gray-200 "
+                        >
+                          Update profile picture
                         </a>
                       </Link>
                     </li>
                     <li>
-                      <a href="#" class="block  px-4 py-2 hover:bg-gray-200 ">
+                      <a
+                        href="#"
+                        class="block  px-4 py-2 border-b-2 border-b-slate-200 hover:bg-gray-200 "
+                      >
                         Settings
                       </a>
                     </li>
@@ -152,7 +158,7 @@ const Navbar = ({ showNavbar }) => {
                     <li>
                       <button
                         onClick={handleLogout}
-                        className="btn w-full py-2 hover:bg-gray-200 "
+                        className="btn w-full py-2 border-b-2 border-b-slate-200 hover:bg-gray-200 "
                       >
                         Sign Out
                       </button>
@@ -191,7 +197,7 @@ const Navbar = ({ showNavbar }) => {
           {token ? (
             <a
               className="text-sm hidden lg:block text-blue-600 font-bold"
-              href="google.com"
+              href="#"
             >
               About Us
             </a>
@@ -245,7 +251,9 @@ const Navbar = ({ showNavbar }) => {
                     className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
                     href="#"
                   >
-                    <Link to={"/Avatar"}>Update Profile picture</Link>
+                    <Link onClick={handleClose} to={"/Avatar"}>
+                      Update Profile picture
+                    </Link>
                   </a>
                 </li>
                 <li className="mb-1">

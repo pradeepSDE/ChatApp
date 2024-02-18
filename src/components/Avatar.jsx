@@ -1,19 +1,25 @@
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { db, storage } from "../App";
 import { doc, updateDoc } from "firebase/firestore";
 import { Link } from "react-router-dom";
+import { RotatingLines } from "react-loader-spinner";
 
 const Avatar = () => {
   const { currentUser } = useContext(AuthContext);
+  const [loading, setLoadng] = useState(false);
+  const [Success, setSuccess] = useState(false);
   currentUser && console.log(currentUser.uid);
   currentUser && console.log(currentUser.displayName);
   const date = new Date().getTime();
   const storageRef =
     currentUser && ref(storage, `${currentUser.displayName + date}`);
+
   const handleSubmit = async (e) => {
+    setSuccess(false)
+    setLoadng(true);
     e.preventDefault();
     console.log("chala");
     const file = e.target[0].files[0];
@@ -29,18 +35,25 @@ const Avatar = () => {
           currentUser &&
             (await updateDoc(doc(db, "users", currentUser.uid), {
               photoURL: downloadURL,
+            }).then(() => {
+              setSuccess(true);
             }));
         } catch (er) {
+          setLoadng(false);
           console.log(er);
         }
       });
     });
+    setLoadng(false);
   };
   return (
     <div className="flex flex-col justify-center pt-24 my-auto">
+      <div className="flex mx-auto">
+        <img className="avatr  object-cover h-24 w-24" src={currentUser && currentUser.photoURL} alt="" />
+      </div>
       <form
         onSubmit={handleSubmit}
-        class="flex flex-col items-center justify-center my-auto space-y-4"
+        class="flex pt-4 flex-col items-center justify-center my-auto space-y-4"
         action="/"
       >
         <h2 class="text-2xl font-bold text-blue-600">Update Profile Picture</h2>
@@ -76,9 +89,30 @@ const Avatar = () => {
         </button>
       </form>
 
-      <h1 className="font-sans text-xl font-semibold p-2 mt-3 ">
+      <h1 className="font-sans outline-1 hover:text-blue-500 outline-black text-xl font-semibold p-2 mt-3 ">
         <Link to={"/private"}>Back to Chats</Link>
       </h1>
+      {loading ? (
+       <div className="mx-auto mt-5"><RotatingLines
+       className="mx-auto "
+       visible={true}
+       height="96"
+       width="96"
+       strokeColor="#007FFF"
+       strokeWidth="5"
+       animationDuration="0.75"
+       ariaLabel="rotating-lines-loading"
+       wrapperStyle={{}}
+       wrapperClass=""
+     /></div>
+      ) : (
+        <></>
+      )}
+      {Success && (
+        <h1 className="font-sans text-green-500  font-semibold text-xl ">
+          Profile update succesfull..
+        </h1>
+      )}
     </div>
   );
 };
