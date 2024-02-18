@@ -1,4 +1,4 @@
-import { collection, getDocs,} from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { db } from "../App";
 
@@ -13,7 +13,7 @@ const RandomUserChats = () => {
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
   const navigate = useNavigate();
-  const[loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const [windowSize, setWindowSize] = useState(getWindowSize());
 
@@ -41,14 +41,14 @@ const RandomUserChats = () => {
     console.log(error);
   }
   const getRandomUsers = async () => {
-    setLoading(true)
+    setLoading(true);
     const querySnapshot = await getDocs(collection(db, "users"));
     querySnapshot.forEach((doc) => {
       console.log("object");
       // doc.data() is never undefined for query doc snapshots
       console.log(doc.id, " => ", doc.data());
     });
-    setLoading(false)
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -59,11 +59,11 @@ const RandomUserChats = () => {
         const Chatobj = await querySnapshot.docs.map((doc) => ({
           id: doc.id,
           displayName: doc.data().displayName,
-          email: doc.email, 
+          email: doc.email,
         }));
         console.log(Chatobj);
         setChats(Chatobj);
-        
+
         return () => {
           querySnapshot();
         };
@@ -94,19 +94,19 @@ const RandomUserChats = () => {
     // <>p</>
     <div className=" overflow-y-hidden">
       <div className="mx-auto ml-48">
-            {loading && (
-              <MagnifyingGlass
-                visible={true}
-                height="80"
-                width="80"
-                ariaLabel="magnifying-glass-loading"
-                wrapperStyle={{}}
-                wrapperClass="magnifying-glass-wrapper"
-                glassColor="#c0efff"
-                color="#007FFF"
-              />
-            )}
-          </div>
+        {loading && (
+          <MagnifyingGlass
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="magnifying-glass-loading"
+            wrapperStyle={{}}
+            wrapperClass="magnifying-glass-wrapper"
+            glassColor="#c0efff"
+            color="#007FFF"
+          />
+        )}
+      </div>
       {Object.entries(chats)?.map((chat) => (
         <div
           className=" rounded-xl overflow-y-auto bg-white hover:bg-slate-200 p-1.5 mt-2"
@@ -117,14 +117,9 @@ const RandomUserChats = () => {
           <div className="flex  ">
             {/* <p>{chat[1].displayName}</p> */}
             <div>
-              <img
-                className="avatar  "
-                src={chat[1].photoURL}
-                alt="img"
-              />
+              <img className="avatar  " src={chat[1].photoURL} alt="img" />
             </div>
             <div className="flex flex-col justify-center overflow-x-hidden  items-center ml-9">
-             
               <span className="text-2xl mt-2 font-sans font-semibold">
                 {chat[1].displayName}
               </span>

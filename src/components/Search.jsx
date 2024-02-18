@@ -114,7 +114,7 @@ const Search = () => {
           [combID + ".userInfo"]: {
             uid: user.uid,
             displayName: user.displayName,
-            photoURL:user.photoURL
+            photoURL: user.photoURL,
           },
           [combID + ".date"]: serverTimestamp(),
         });
@@ -123,7 +123,7 @@ const Search = () => {
           [combID + ".userInfo"]: {
             uid: authUser.uid,
             displayName: authUser.displayName,
-            photoURL:authUser.photoURL
+            photoURL: authUser.photoURL,
           },
           [combID + ".date"]: serverTimestamp(),
         });
@@ -172,7 +172,7 @@ const Search = () => {
                 type="checkbox"
                 name="toggle"
                 id="toggle"
-                className="sr-only peer "
+                className="sr-only peer  "
                 checked={isChecked}
                 onChange={handleToggle}
               />

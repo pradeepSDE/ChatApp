@@ -58,7 +58,8 @@ function SignUp() {
         console.log(err);
         seterror(true);
       });
-    // navigate('/SignIn')
+      alert("login using your Id And password")
+    navigate('/SignIn')
   };
 
   if (Loading) {

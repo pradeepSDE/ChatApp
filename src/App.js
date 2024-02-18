@@ -6,7 +6,7 @@ import SignIn from "./components/SignIn";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import AuthContext from "./context/AuthContext";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 // import Profile from './components/Profile';
 import UserProfile from "./components/UserProfile";
 import PrivateRoute from "./components/PrivateRoute";
@@ -40,14 +40,14 @@ function App() {
 
   const location = useLocation();
   console.log("loc", location);
-  const currentpath = location.pathname
-    useEffect(() => {
-      
-      if(currentpath==='/chatBox'){
-  setNav(false)
-      }
-    }, [currentpath]);
+  const currentpath = location.pathname;
+  useEffect(() => {
+    if (currentpath === "/chatBox") {
+      setNav(false);
+    }
+  }, [currentpath]);
 
+  
   return (
     <>
       <div className="App">
@@ -69,7 +69,7 @@ function App() {
             <Route path="/private" element={<UserProfile />} />
           </Route>
           <Route exact path="/signUp" element={<SignUp />} />
-          <Route exact path="/Avatar" element={<Avatar/>}/>
+          <Route exact path="/Avatar" element={<Avatar />} />
         </Routes>
       </div>
     </>

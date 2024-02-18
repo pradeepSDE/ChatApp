@@ -8,11 +8,13 @@ const Navbar = ({ showNavbar }) => {
   console.log(showNavbar);
   //   const[user,setUser]=useContext(AuthContext)
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
+  currentUser && console.log(currentUser.emailVerified);
   const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
 
   const auth = getAuth();
+  const emailState = currentUser && currentUser.emailVerified;
+  console.log(emailState);
   const signuserOut = () => {
     signOut(auth)
       .then(() => {
@@ -37,6 +39,7 @@ const Navbar = ({ showNavbar }) => {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       navigate("/SignIn");
+      handleClose();
     } catch (error) {
       console.error(error);
     }
@@ -57,7 +60,7 @@ const Navbar = ({ showNavbar }) => {
   };
 
   const token = localStorage.getItem("token");
-  console.log(toggle);
+  // console.log(toggle);
 
   return (
     <>
@@ -235,26 +238,61 @@ const Navbar = ({ showNavbar }) => {
             <div>
               <ul>
                 <li className="mb-1">
-                  <img
-                    src={currentUser && currentUser.photoURL}
-                    alt="img"
-                    className=" h-24 mx-auto avatr w-24  mt-2"
-                  />
+                  {token ? (
+                    <>
+                      {" "}
+                      <img
+                        src={currentUser && currentUser.photoURL}
+                        alt="img"
+                        className=" h-24 mx-auto avatr w-24  mt-2"
+                      />
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </li>
                 <li className="mb-1">
-                  <span className="block p-4 text-xl font-bold text-gray-900 hover:bg-blue-50 hover:text-blue-600 rounded">
-                    {currentUser && currentUser.displayName}
-                  </span>
+                  {token ? (
+                    <span className="block p-4 text-xl font-bold text-gray-900 hover:bg-blue-50 hover:text-blue-600 rounded">
+                      {currentUser && currentUser.displayName}
+                    </span>
+                  ) : (
+                    <></>
+                  )}
                 </li>
                 <li className="mb-1">
                   <a
                     className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
                     href="#"
                   >
-                    <Link onClick={handleClose} to={"/Avatar"}>
-                      Update Profile picture
-                    </Link>
+                    {token ? (
+                      <Link onClick={handleClose} to={"/Avatar"}>
+                        Update Profile picture
+                      </Link>
+                    ) : (
+                      <p>Know More</p>
+                    )}
                   </a>
+                </li>
+                <li className="mb-1">
+                  {token ? (
+                    <div className="flex p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-500 rounded justify-center items-center ">
+                      EmailVerified:
+                      {emailState ? (
+                        <img
+                          className="h-6 pl-2"
+                          src="/icons8-tick-50.png"
+                        ></img>
+                      ) : (
+                        <img
+                          className="h-6 pl-2"
+                          src="/icons8-cross-50.png"
+                        ></img>
+                      )}
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                 </li>
                 <li className="mb-1">
                   <a
@@ -273,6 +311,7 @@ const Navbar = ({ showNavbar }) => {
                 ) : (
                   <Link
                     to="/SignIn"
+                    onClick={handleClose}
                     className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl"
                   >
                     Sign in
@@ -283,6 +322,7 @@ const Navbar = ({ showNavbar }) => {
                 ) : (
                   <Link
                     to="/Signup"
+                    onClick={handleClose}
                     className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700  rounded-xl"
                   >
                     Sign up

@@ -16,7 +16,7 @@ const Avatar = () => {
   const date = new Date().getTime();
   const storageRef =
     currentUser && ref(storage, `${currentUser.displayName + date}`);
-
+   
   const handleSubmit = async (e) => {
     setSuccess(false)
     setLoadng(true);

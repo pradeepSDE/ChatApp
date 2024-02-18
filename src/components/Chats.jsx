@@ -10,6 +10,7 @@ const Chats = () => {
   const [chats, setChats] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [windowSize, setWindowSize] = useState(getWindowSize());
 
@@ -41,6 +42,7 @@ const Chats = () => {
   useEffect(() => {
     const getChats = async () => {
       try {
+        setLoading(true);
         const unsub = await onSnapshot(doc(db, "userChats", uid), (doc) => {
           setChats(doc.data());
         });
@@ -51,6 +53,7 @@ const Chats = () => {
       } catch (err) {
         console.log(err);
       }
+      setLoading(false);
     };
 
     uid && getChats();
@@ -66,7 +69,6 @@ const Chats = () => {
   return (
     <>
       <div className=" ">
-        <p></p>
         {Object.entries(chats)
           ?.sort((a, b) => b[1].date - a[1].date)
           .map((chat) => (
@@ -81,7 +83,7 @@ const Chats = () => {
                     className="avatar "
                     src={chat[1].userInfo.photoURL}
                     alt="img"
-                    />
+                  />
                 </div>
                 <div className="flex flex-col justify-center items-center ml-6">
                   <span className="text-2xl mt-2 font-sans font-semibold">
