@@ -34,13 +34,12 @@ function SignUp() {
       .then(async (res) => {
         console.log(res);
         const user = res.user;
-        console.log(user)
-
-        
+        console.log(user);
 
         await updateProfile(user, {
           displayName: displayName,
-          photoURL: "https://th.bing.com/th/id/OIP.Gfp0lwE6h7139625a-r3aAHaHa?rs=1&pid=ImgDetMain"
+          photoURL:
+            "https://th.bing.com/th/id/OIP.Gfp0lwE6h7139625a-r3aAHaHa?rs=1&pid=ImgDetMain",
         });
 
         await setDoc(doc(db, "users", user.uid), {
@@ -58,8 +57,8 @@ function SignUp() {
         console.log(err);
         seterror(true);
       });
-      alert("login using your Id And password")
-    navigate('/SignIn')
+    alert("login using your Id And password");
+    navigate("/SignIn");
   };
 
   if (Loading) {
@@ -200,7 +199,7 @@ function SignUp() {
                         className="font-bold text-grey-700 underline"
                       >
                         {" "}
-                        SignUp{" "}
+                        SignIn{" "}
                       </Link>
                     </p>
                   </form>
