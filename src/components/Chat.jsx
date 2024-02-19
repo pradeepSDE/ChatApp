@@ -7,7 +7,6 @@ import Nochatselect from "./Nochatselect";
 
 const Chat = () => {
   const { data } = useContext(ChatContext);
-  console.log(data);
   return (
     <div className="msgNavbar h-full -z-50  flex flex-col">
       {/* <!-- This is an example component --> */}

@@ -1,138 +1,174 @@
-import React, { useContext, useState } from 'react'
-import GoogleButton from 'react-google-button'
-import { GoogleAuthProvider,signInWithEmailAndPassword,getAuth,signInWithPopup, signInWithRedirect, signOut} from "firebase/auth";
-import AuthContext from '../context/AuthContext';
+import React, { useContext, useState } from "react";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  getAuth,
+} from "firebase/auth";
+import AuthContext from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import  { ClipLoader } from 'react-spinners';
-import { Bars } from 'react-loader-spinner';
-
+import { Bars } from "react-loader-spinner";
 
 const SignIn = () => {
   const [loading, setLoading] = useState(false);
   const provider = new GoogleAuthProvider();
-  const[error,setError]=useState(false);
+  const [error, setError] = useState(false);
   const auth = getAuth();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+
   
-  
-  const handleGoogleSignin=()=>{
-    setLoading(true);
-    signInWithRedirect(auth,provider);
-    // signInWithPopup(auth,provider);
-    console.log('uhuh')
-    
-  
-  }
-  
-  const {currentUser}= useContext(AuthContext)
-  const handleFormSubmit= async(e)=>{
+
+  const { currentUser } = useContext(AuthContext);
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
-      console.log(loading)
-      const userCredential = await  signInWithEmailAndPassword(auth, email, password)
-      console.log(userCredential)
-      const Authuser=userCredential.user
-      localStorage.setItem('token',Authuser.accessToken)
-       localStorage.setItem('user',JSON.stringify(Authuser))
-       console.log(Authuser)
-       
-       console.log(currentUser)
-       setLoading(false)
-       navigate('/private')
-        
-      } catch (error) {
-        setLoading(false)
-        setError(true)
-        console.error(error)
-        
-      }
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+    
+      const Authuser = userCredential.user;
+      localStorage.setItem("token", Authuser.accessToken);
+      localStorage.setItem("user", JSON.stringify(Authuser));
+      
+      setLoading(false);
+      navigate("/private");
+    } catch (error) {
+      setLoading(false);
+      setError(true);
+      console.error(error);
     }
-    const [email,setEmail]=useState('')
-    const [password,setPassword]=useState('')
+  };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  if(loading  ){
-      return <div className=''>
-
-        <div className='flex items-center justify-center'>
-
-        <h1 className='font-mono text-3xl mt-1.5 font-bold '>Logging you in...</h1>
+  if (loading) {
+    return (
+      <div className="">
+        <div className="flex items-center justify-center">
+          <h1 className="font-mono text-3xl mt-1.5 font-bold ">
+            Logging you in...
+          </h1>
         </div>
-      <div className='h-screen flex items-center justify-center'>
-        <Bars 
-      height="150"
-      width="150"
-      color="#00BFFF"
-      ariaLabel="bars-loading"
-      wrapperStyle={{}}
-      wrapperClass=""
-      visible={true}
-      /></div>
-      </div> 
-    }
-    else{
-
-      
-      
-  return (
-    <>
- <body className="bg-white rounded-lg ">  
- <section class="bg-gray-50">
-  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-  <h1 className='text-2xl  font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-br from-sky-400 to-indigo-800'>P-Chat</h1>
-      <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
-          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
-                  Sign in to your account
-              </h1>
-              {error &&  <div className='bg-red-200 p-2 rounded-2xl  '>
-             <p className=' text-sm font-semibold px-6 py-2 text-grey-700'>Incorrect username or password </p>
-            
-            </div>
-            }
-              <form class="space-y-4 md:space-y-6" action="#" onSubmit={handleFormSubmit}>
-                  <div>
-                      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
-                      <input 
-                      type="email" 
-                      name="email" 
-                      id="email" 
-                      value={email}
-                      onChange={(e)=>setEmail(e.target.value)} 
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="name@company.com" required=""/>
-                  </div>
-                  <div>
-                      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
-                      <input 
-                      type="password" 
-                      name="password" 
-                      id="password" 
-                      placeholder="••••••••" 
-                      value={password}
-                      onChange={(e)=>setPassword(e.target.value)}
-                      class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " required=""/>
-                  </div>
-                  <div class="flex items-center justify-between">
-                      <div class="flex items-start">
-                          <div class="flex items-center h-5">
-                            <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300  " required=""/>
-                          </div>
-                          <div class="ml-3 text-sm">
-                            <label for="remember" class="text-gray-500 ">Remember me</label>
-                          </div>
-                      </div>
-                      <a href="#" class="text-sm font-medium text-primary-600 hover:underline ">Forgot password?</a>
-                  </div>
-                  <button type="submit" class="w-full text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  ">Sign in</button>
-                  <p class="text-sm font-light text-gray-500 ">
-                      Don’t have an account yet? <Link to={'/signUp'} className="font-bold  underline text-grey-700" >SignUp</Link>
-                  </p>
-              </form>
-          </div>
+        <div className="h-screen flex items-center justify-center">
+          <Bars
+            height="150"
+            width="150"
+            color="#00BFFF"
+            ariaLabel="bars-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+        </div>
       </div>
-  </div>
-</section>
-{/* 
+    );
+  } else {
+    return (
+      <>
+        <body className="bg-white rounded-lg ">
+          <section class="bg-gray-50">
+            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            
+              <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
+                <div class="p-6  border-1 border-blue-300 shadow-xl shadow-blue-400 space-y-4 md:space-y-6 sm:p-8">
+                  <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
+                    Sign in to your account
+                  </h1>
+                  {error && (
+                    <div className="bg-red-200 p-2 rounded-2xl  ">
+                      <p className=" text-sm font-semibold px-6 py-2 text-grey-700">
+                        Incorrect username or password{" "}
+                      </p>
+                    </div>
+                  )}
+                  <form
+                    class="space-y-4 md:space-y-6"
+                    action="#"
+                    onSubmit={handleFormSubmit}
+                  >
+                    <div>
+                      <label
+                        for="email"
+                        class="block mb-2 text-sm font-medium text-gray-900 "
+                      >
+                        Your email
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                        placeholder="name@company.com"
+                        required=""
+                      />
+                    </div>
+                    <div>
+                      <label
+                        for="password"
+                        class="block mb-2 text-sm font-medium text-gray-900 "
+                      >
+                        Password
+                      </label>
+                      <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="••••••••"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                        required=""
+                      />
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                          <input
+                            id="remember"
+                            aria-describedby="remember"
+                            type="checkbox"
+                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300  "
+                            required=""
+                          />
+                        </div>
+                        <div class="ml-3 text-sm">
+                          <label for="remember" class="text-gray-500 ">
+                            Remember me
+                          </label>
+                        </div>
+                      </div>
+                      <a
+                        href="#"
+                        class="text-sm font-medium text-primary-600 hover:underline "
+                      >
+                        Forgot password?
+                      </a>
+                    </div>
+                    <button
+                      type="submit"
+                      class="w-full text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
+                    >
+                      Sign in
+                    </button>
+                    <p class="text-sm font-light text-gray-500 ">
+                      Don’t have an account yet?{" "}
+                      <Link
+                        to={"/signUp"}
+                        className="font-bold  underline text-grey-700"
+                      >
+                        SignUp
+                      </Link>
+                    </p>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+          {/* 
  <div className="container flex flex-col mx-auto bg-white rounded-lg my-5 ">
            <div className="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
       <div className="flex items-center justify-center w-full lg:p-12">
@@ -172,11 +208,9 @@ const SignIn = () => {
         </div>
       </div>
     </div> */}
-        {/* </div> */}
-        
+          {/* </div> */}
 
-
-{/* 
+          {/* 
         <div className="container flex flex-col mx-auto bg-white rounded-lg pt-12 ">
            <div className="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
       <div className="flex items-center  justify-center w-full lg:p-12">
@@ -211,15 +245,10 @@ const SignIn = () => {
               </div>
     </div>
         </div> */}
-    </body>
+        </body>
+      </>
+    );
+  }
+};
 
-
-    
-    </>
-  )
-}
-
-}
-
-
-export default SignIn
+export default SignIn;
