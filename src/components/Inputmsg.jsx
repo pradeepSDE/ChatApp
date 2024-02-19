@@ -19,6 +19,7 @@ const Inputmsg = () => {
     e.code === "Enter" && handleSend();
   };
 
+  console.log(data.chatId);
   const handleSend = async () => {
     try {
       await updateDoc(doc(db, "chats", data.chatId), {
@@ -44,12 +45,13 @@ const Inputmsg = () => {
       });
       SetText("");
     } catch (error) {
+      console.log(error);
       alert("please select a user to chat with");
     }
   };
   return (
     <>
-      <div className="inputbox fixed flex w-full     left-0 right-0 z-0 ">
+      <div className="inputbox  flex w-full     left-0 right-0 z-0 ">
         <div className="flex items-center justify-center w-full h-14 bg-gray-100 px-4 py-2 rounded-lg">
           <input
             value={text}
