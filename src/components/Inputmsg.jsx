@@ -49,7 +49,7 @@ const Inputmsg = () => {
   };
   return (
     <>
-      <div className="inputbox  flex w-full  sticky bottom-0  left-0 right-0 z-0 ">
+      <div className="inputbox fixed flex w-full     left-0 right-0 z-0 ">
         <div className="flex items-center justify-center w-full h-14 bg-gray-100 px-4 py-2 rounded-lg">
           <input
             value={text}
