@@ -32,7 +32,7 @@ const Chat = () => {
       </div>
 
       <div
-        className={` flex -z-50 ${data.user.displayName ? "send " : "fixed ml-96 mt-48"} flex-col`}
+        className={` flex  ${data.user.displayName ? "send " : "fixed ml-96 mt-48"} flex-col`}
       >
         {data.user.displayName ? <Inputmsg /> : <Nochatselect />}
       </div>
