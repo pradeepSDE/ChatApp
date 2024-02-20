@@ -92,7 +92,7 @@ function SignUp() {
                 P-Chat
               </h1>
               <div class="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
-                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <div class="p-6 shadow-lg shadow-blue-400  border-1 border-blue-500 space-y-4 md:space-y-6 sm:p-8">
                   <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                     Create New account
                   </h1>
