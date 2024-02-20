@@ -65,7 +65,7 @@ const Chats = () => {
       navigate("/chatBox");
     }
   };
-
+  console.log(chats);
   return (
     <>
       <div className=" ">
@@ -81,13 +81,13 @@ const Chats = () => {
                 <div className="items-center justify-center  flex">
                   <img
                     className="avatar "
-                    src={chat[1].userInfo.photoURL}
+                    src={chat[1].userInfo?.photoURL}
                     alt="img"
                   />
                 </div>
                 <div className="flex flex-col justify-center items-center ml-6">
                   <span className="text-2xl mt-2 font-sans font-semibold">
-                    {chat[1].userInfo.displayName}
+                    {chat[1].userInfo?.displayName}
                   </span>
                   <p className="font-light mt-1.5">
                     {chat[1].lastMessage?.text}

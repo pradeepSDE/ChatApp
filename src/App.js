@@ -42,6 +42,7 @@ function App() {
   console.log("loc", location);
   const currentpath = location.pathname;
   useEffect(() => {
+    setNav(true)
     if (currentpath === "/chatBox") {
       setNav(false);
     }

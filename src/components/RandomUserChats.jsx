@@ -63,6 +63,7 @@ const RandomUserChats = () => {
         }));
         console.log(Chatobj);
         setChats(Chatobj);
+        // console.log(chats);
 
         return () => {
           querySnapshot();
