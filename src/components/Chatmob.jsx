@@ -35,6 +35,11 @@ const Chatmob = () => {
                   {data.user?.displayName} {data.user ? <></> : <p>No User</p>}
                 </span>
               </a>
+              <div className="flex ml-10">
+                <button onClick={handleClick}>
+                  <img className="h-8" src="/icons8-back-48.png" alt="nj" />
+                </button>
+              </div>
             </div>
           </nav>
         ) : (

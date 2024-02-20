@@ -1,14 +1,20 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import ChatContext from "../context/ChatContext";
+import { Timestamp, arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { db, messaging } from "../App";
+import { v4 as uuid } from "uuid";
+import { Messaging } from "firebase/messaging/sw";
 const Message = ({ messages }) => {
   // console.log(messages)
   const { currentUser } = useContext(AuthContext);
 
   // console.log(currentUser)
   const { data } = useContext(ChatContext);
+  console.log(data);
 
+  console.log(messages);
   // console.log(currentUser.uid)
 
   const ref = useRef();

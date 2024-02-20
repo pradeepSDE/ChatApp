@@ -63,6 +63,9 @@ const Search = () => {
       where("displayName", "==", username)
     );
 
+    console.log("handleSeartch chal;a");
+    console.log(currentUser);
+
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
@@ -79,21 +82,30 @@ const Search = () => {
     e.code === "Enter" && handleSearch();
   };
 
+  console.log(authUser);
 
   const handleSelect = async () => {
+    console.log(w);
     if (w < 600) {
+      console.log("width");
       navigate("/chatBox");
     }
 
+    console.log("handleSelect call");
+    console.log(user.uid);
+    console.log(authUser.displayName);
+    console.log(authUser.uid);
 
     const combID =
       authUser.uid > user.uid
         ? authUser.uid + user.uid
         : user.uid + authUser.uid;
+    console.log(combID);
     const docRef = doc(db, "chats", combID);
 
     try {
       const res = await getDoc(docRef);
+      console.log(res.exists());
 
       if (!res.exists()) {
         await setDoc(docRef, { messages: [] });

@@ -37,6 +37,7 @@ const Chats = () => {
   } catch (error) {
     console.log(error);
   }
+  // chats&& console.log(chats.userInfo.displayName)
 
   useEffect(() => {
     const getChats = async () => {
@@ -79,7 +80,7 @@ const Chats = () => {
               <div className="flex  ">
                 <div className="items-center justify-center  flex">
                   <img
-                    className="avatar avatr h-5 w-10 "
+                    className="avatar "
                     src={chat[1].userInfo.photoURL}
                     alt="img"
                   />

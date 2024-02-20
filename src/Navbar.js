@@ -1,16 +1,37 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import "./App.css";
 import AuthContext from "./context/AuthContext";
 
-const Navbar = () => {
+const Navbar = ({ showNavbar }) => {
+  console.log(showNavbar);
+  //   const[user,setUser]=useContext(AuthContext)
   const { currentUser } = useContext(AuthContext);
+  currentUser && console.log(currentUser.emailVerified);
   const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
 
   const auth = getAuth();
   const emailState = currentUser && currentUser.emailVerified;
+  console.log(emailState);
+  const signuserOut = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-ouconst successful.
+        console.log("sign-out successful");
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log("sign-out unsuccessful");
+      });
+    console.log("signout");
+  };
+
+  const logOut = () => {
+    signuserOut();
+    // setUser(false)
+  };
 
   const handleLogout = async () => {
     try {
@@ -25,19 +46,21 @@ const Navbar = () => {
   };
 
   const toggleMenu = () => {
-    // console.log("toggling");
+    console.log("toggling");
     setToggle(true);
   };
   const handleClose = () => {
-    // console.log("toggling");
+    console.log("toggling");
     setToggle(false);
   };
   const [pr, setPr] = useState(false);
   const handleclick = () => {
     setPr(!pr);
+    console.log("pr is", pr);
   };
 
   const token = localStorage.getItem("token");
+  // console.log(toggle);
 
   return (
     <>
@@ -100,11 +123,11 @@ const Navbar = () => {
                   id="dropdown"
                   className={`z-10 ${
                     pr ? ` ` : `hidden`
-                  } mt-1  fixed  bg-slate-100 min-w-180 shadow-md z-10  divide-y divide-gray-100 rounded-lg  w-50 `}
+                  } mt-1  fixed  bg-slate-100 min-w-160 shadow-md z-10  divide-y divide-gray-100 rounded-lg  w-40 `}
                 >
                   <div className="flex z-50  items-center p-2 border-2 border-b-2  border-b-slate-300">
                     <img
-                      className="avatar avatr h-7 w-9  object-cover   "
+                      className="avatar avatr h-9 w-9  object-cover   "
                       src={currentUser && currentUser.photoURL}
                       alt="img"
                     />
@@ -120,36 +143,16 @@ const Navbar = () => {
                       <Link to={"/Avatar"}>
                         <a
                           href="#"
-                          class="block  hover:text-blue-500 px-4 py-2 border-b-2 border-b-slate-200 hover:bg-gray-200 "
+                          class="block px-4 py-2 border-b-2 border-b-slate-200 hover:bg-gray-200 "
                         >
                           Update profile picture
                         </a>
                       </Link>
                     </li>
                     <li>
-                      {token ? (
-                        <div className="flex p-4 text-sm border-b-2 border-b-slate-200 hover:bg-blue-50 hover:text-blue-500 rounded justify-center items-center ">
-                          EmailVerified:
-                          {emailState ? (
-                            <img
-                              className="h-6 pl-2"
-                              src="/icons8-tick-50.png"
-                            ></img>
-                          ) : (
-                            <img
-                              className="h-6 pl-2"
-                              src="/icons8-cross-50.png"
-                            ></img>
-                          )}
-                        </div>
-                      ) : (
-                        <></>
-                      )}
-                    </li>
-                    <li>
                       <a
                         href="#"
-                        class="block  hover:text-blue-500 px-4 py-2 border-b-2 border-b-slate-200 hover:bg-gray-200 "
+                        class="block  px-4 py-2 border-b-2 border-b-slate-200 hover:bg-gray-200 "
                       >
                         Settings
                       </a>
@@ -158,7 +161,7 @@ const Navbar = () => {
                     <li>
                       <button
                         onClick={handleLogout}
-                        className="btn w-full py-2  hover:text-blue-500 hover:bg-gray-200 "
+                        className="btn w-full py-2 border-b-2 border-b-slate-200 hover:bg-gray-200 "
                       >
                         Sign Out
                       </button>
@@ -339,7 +342,10 @@ const Navbar = () => {
               <p className="my-4 text-xs text-center pt-1 text-gray-400">
                 <span>Copyright © 2021</span>
                 <span> developed by </span>{" "}
-                <a className="font-bold text-blue-500 underline " href="#">
+                <a
+                  className="font-bold text-blue-500 underline "
+                  href="linkedin.com/in/pradeep-bisen-725690202/"
+                >
                   Pradeep Bisen
                 </a>
               </p>

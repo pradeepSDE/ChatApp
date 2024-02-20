@@ -11,19 +11,23 @@ const Avatar = () => {
   const { currentUser } = useContext(AuthContext);
   const [loading, setLoadng] = useState(false);
   const [Success, setSuccess] = useState(false);
+  currentUser && console.log(currentUser.uid);
+  currentUser && console.log(currentUser.displayName);
   const date = new Date().getTime();
   const storageRef =
     currentUser && ref(storage, `${currentUser.displayName + date}`);
-
+   
   const handleSubmit = async (e) => {
-    setSuccess(false);
+    setSuccess(false)
     setLoadng(true);
     e.preventDefault();
+    console.log("chala");
     const file = e.target[0].files[0];
 
     await uploadBytesResumable(storageRef, file).then(() => {
       getDownloadURL(storageRef).then(async (downloadURL) => {
         try {
+          console.log(downloadURL);
           //Update profile
           await updateProfile(currentUser, {
             photoURL: downloadURL,
@@ -45,11 +49,7 @@ const Avatar = () => {
   return (
     <div className="flex flex-col justify-center pt-24 my-auto">
       <div className="flex mx-auto">
-        <img
-          className="avatr  object-cover h-24 w-24"
-          src={currentUser && currentUser.photoURL}
-          alt=""
-        />
+        <img className="avatr  object-cover h-24 w-24" src={currentUser && currentUser.photoURL} alt="" />
       </div>
       <form
         onSubmit={handleSubmit}
@@ -93,20 +93,18 @@ const Avatar = () => {
         <Link to={"/private"}>Back to Chats</Link>
       </h1>
       {loading ? (
-        <div className="mx-auto mt-5">
-          <RotatingLines
-            className="mx-auto "
-            visible={true}
-            height="96"
-            width="96"
-            strokeColor="#007FFF"
-            strokeWidth="5"
-            animationDuration="0.75"
-            ariaLabel="rotating-lines-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
-          />
-        </div>
+       <div className="mx-auto mt-5"><RotatingLines
+       className="mx-auto "
+       visible={true}
+       height="96"
+       width="96"
+       strokeColor="#007FFF"
+       strokeWidth="5"
+       animationDuration="0.75"
+       ariaLabel="rotating-lines-loading"
+       wrapperStyle={{}}
+       wrapperClass=""
+     /></div>
       ) : (
         <></>
       )}

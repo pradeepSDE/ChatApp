@@ -43,7 +43,11 @@ const RandomUserChats = () => {
   const getRandomUsers = async () => {
     setLoading(true);
     const querySnapshot = await getDocs(collection(db, "users"));
-    querySnapshot.forEach((doc) => {});
+    querySnapshot.forEach((doc) => {
+      console.log("object");
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+    });
     setLoading(false);
   };
 
@@ -51,12 +55,13 @@ const RandomUserChats = () => {
     const getRandomUsers = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "users"));
+        console.log(querySnapshot);
         const Chatobj = await querySnapshot.docs.map((doc) => ({
           id: doc.id,
           displayName: doc.data().displayName,
           email: doc.email,
         }));
-        
+        console.log(Chatobj);
         setChats(Chatobj);
 
         return () => {
@@ -69,7 +74,9 @@ const RandomUserChats = () => {
 
     uid && getRandomUsers();
   }, [uid]);
+  console.log(chats);
   const handleSelect = (u) => {
+    console.log("ok");
 
     dispatch({ type: "CHANGE_USER", payload: u });
     if (w < 700) {
@@ -77,6 +84,11 @@ const RandomUserChats = () => {
     }
   };
 
+  if (chats) {
+    console.log("true");
+  } else {
+    console.log("false");
+  }
 
   return (
     // <>p</>
@@ -102,14 +114,10 @@ const RandomUserChats = () => {
           onClick={() => handleSelect(chat[1])}
         >
           {/* <img src={chat[1].userInfo.photoURL} alt="" /> */}
-          <div className="flex   items-center">
+          <div className="flex  ">
             {/* <p>{chat[1].displayName}</p> */}
             <div>
-              <img
-                className="avatar avatr border-1 border-slate-200  "
-                src={chat[1].photoURL}
-                alt="img"
-              />
+              <img className="avatar  " src={chat[1].photoURL} alt="img" />
             </div>
             <div className="flex flex-col justify-center overflow-x-hidden  items-center ml-9">
               <span className="text-2xl mt-2 font-sans font-semibold">

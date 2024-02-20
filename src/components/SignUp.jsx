@@ -32,7 +32,9 @@ function SignUp() {
       password
     )
       .then(async (res) => {
+        console.log(res);
         const user = res.user;
+        console.log(user);
 
         await updateProfile(user, {
           displayName: displayName,
@@ -85,9 +87,12 @@ function SignUp() {
       <>
         <body className="bg-white rounded-lg ">
           <section class="bg-gray-50 ">
-            <div class=" flex  flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+              <h1 className="text-2xl  font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-br from-sky-400 to-indigo-800">
+                P-Chat
+              </h1>
               <div class="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
-                <div class="p-6 border-1 border-blue-300 shadow-xl shadow-blue-400 space-y-4 md:space-y-6 sm:p-8">
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                   <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                     Create New account
                   </h1>
